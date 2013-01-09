@@ -1,0 +1,5 @@
+
+one:
+  id: 1
+  username: bob
+  crypted_password: <%= User.encrypt('password')  %>
