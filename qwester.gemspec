@@ -10,13 +10,13 @@ Gem::Specification.new do |s|
   s.authors     = ["Rob Nichols"]
   s.email       = ["rob@undervale.co.uk"]
   s.homepage    = "https://github.com/reggieb/qwester"
-  s.summary     = "TODO: Summary of Qwester."
-  s.description = "TODO: Description of Qwester."
+  s.summary     = "Questionnaire engine with configurable questions and answers"
+  s.description = "Questionnairs have many questions. Questions have many answers. Qwester manages these objects and the relationships the join them."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", "~> 3.2.8"
+  s.add_dependency "rails", "~> 3.2"
   # s.add_dependency "jquery-rails"
 
   s.add_development_dependency "mysql2"
