@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class AdminUserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  def setup
+    @admin_user = AdminUser.find(1)
+  end
+  
 end

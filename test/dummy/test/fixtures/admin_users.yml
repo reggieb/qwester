@@ -1,5 +1,5 @@
 one: 
   id: 1
   email: 'admin@user.com'
-#  encrypted_password: <%= AdminUser.new.send(:password_digest, 'password') %>
+  encrypted_password: <%= AdminUser.new.send(:password_digest, 'password') %>
 
