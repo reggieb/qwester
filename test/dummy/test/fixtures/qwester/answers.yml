@@ -1,0 +1,11 @@
+
+one: 
+  id: 1
+  value: <%= Qwester::Answer.standard_values[0] %>
+  question_id: 1
+  
+two:
+  id: 2
+  value: <%= Qwester::Answer.standard_values[1] %>
+  question_id: 1
+

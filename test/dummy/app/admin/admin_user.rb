@@ -1,3 +1,4 @@
+require_relative '../models/admin_user'
 ActiveAdmin.register AdminUser do     
   index do                            
     column :email                     
@@ -17,4 +18,4 @@ ActiveAdmin.register AdminUser do
     end                               
     f.actions                         
   end                                 
-end                                   
+end                                       

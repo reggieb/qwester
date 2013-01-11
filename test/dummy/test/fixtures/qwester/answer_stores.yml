@@ -1,0 +1,4 @@
+one:
+  id: 1
+  session_id: <%= RandomString.new(15) %>
+

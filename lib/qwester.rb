@@ -1,4 +1,7 @@
 require "qwester/engine"
+require 'acts_as_list'
+require 'paperclip'
+require 'random_string'
 
 module Qwester
   mattr_accessor :admin_user_class

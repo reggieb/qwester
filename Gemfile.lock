@@ -2,6 +2,9 @@ PATH
   remote: .
   specs:
     qwester (0.0.1)
+      acts_as_list
+      array_logic
+      paperclip (~> 3.0)
       rails (~> 3.2)
 
 GEM
@@ -46,14 +49,17 @@ GEM
     activesupport (3.2.11)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    acts_as_list (0.1.9)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (3.0.2)
+    array_logic (0.1.1)
     bcrypt-ruby (3.0.1)
     bourbon (3.0.1)
       sass (>= 3.2.0)
       thor
     builder (3.0.4)
+    cocaine (0.4.2)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -100,6 +106,12 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     orm_adapter (0.4.0)
+    paperclip (3.4.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.4.0)
+      mime-types
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
