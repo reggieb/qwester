@@ -141,7 +141,11 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
-
+  # Load application.js to remove jQuery conflicts (so jquery is only loaded in application.js):
+  current_javascripts = config.javascripts.clone
+  config.clear_javascripts! 
+  config.register_javascript 'application.js'
+  current_javascripts.reverse.each{|j| config.register_javascript j}
 
   # == CSV options
   #

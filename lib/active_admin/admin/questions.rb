@@ -31,7 +31,7 @@ module Qwester
             td answer.value
             td(answer.first? ? "&nbsp;".html_safe : link_to('Up', move_up_admin_qwester_answer_path(answer)))
             td(answer.last? ? "&nbsp;".html_safe : link_to('Down', move_down_admin_qwester_answer_path(answer)))
-            td link_to('Delete', remove_admin_qwester_answer_path(answer), :confirm => 'Are you sure you want to delete this answer?')
+            td link_to('Delete', remove_admin_qwester_answer_path(answer), :confirm => "Are you sure you want to delete the answer '#{answer.value}'?")
           end
         end
       end
@@ -56,33 +56,11 @@ module Qwester
       f.buttons
     end
     
-    member_action :move_up do
-      question = Question.find(params[:id])
-      questionnaire = Questionnaire.find(params[:questionnaire_id])
-      questionnaire.move_higher(question)
-      redirect_to admin_questionnaire_path(questionnaire)      
-    end
-    
-
     controller do
 
       def new
         @qwester_question = Question.new
         @qwester_question.build_standard_answers
-      end
-
-#      def move_up
-#        question = Question.find(params[:id])
-#        questionnaire = Questionnaire.find(params[:questionnaire_id])
-#        questionnaire.move_higher(question)
-#        redirect_to admin_questionnaire_path(questionnaire)
-#      end
-
-      def move_down
-        question = Question.find(params[:id])
-        questionnaire = Questionnaire.find(params[:questionnaire_id])
-        questionnaire.move_lower(question)
-        redirect_to admin_questionnaire_path(questionnaire)
       end
 
     end

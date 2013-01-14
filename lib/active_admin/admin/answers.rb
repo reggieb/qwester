@@ -8,7 +8,7 @@ module Qwester
       column :id
       column :value
       column 'Question (edit answer via question)', :question do |answer|
-        link_to(answer.question.title, edit_admin_question_path(answer.question)) if answer.question
+        link_to(answer.question.title, edit_admin_qwester_question_path(answer.question)) if answer.question
       end
       column :position
       column :cope_index
