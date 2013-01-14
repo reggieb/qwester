@@ -1,3 +1,16 @@
 = Qwester
 
-This project rocks and uses MIT-LICENSE.
+
+
+== Integration with ActiveAdmin
+
+Qwester contains a set of ActiveAdmin registration files, that allow Qwester
+models to be managed from within the parent app's active_admin space. Of course
+ActiveAdmin needs to be installed and working in the parent rails application
+
+To use the Qwester ActiveAdmin registration files, add this to the active_admin 
+initializer in your application.
+
+    config.load_paths << Qwester.active_admin_load_path
+
+See test/dummy/config/initializers/active_admin for an example
