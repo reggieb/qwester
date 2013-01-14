@@ -150,4 +150,7 @@ ActiveAdmin.setup do |config|
   #
   # Set the CSV builder options (default is {})
   # config.csv_options = {}
-end if defined?(ActiveAdmin)
+  
+  config.load_paths << "#{Qwester::Engine.root}/lib/active_admin/admin/"
+  
+end 
