@@ -1,8 +1,10 @@
 module Qwester
 
-  ActiveAdmin.register Answer, :as => 'Answers' do
+  ActiveAdmin.register Answer do
     
-    menu :parent => Qwester.active_admin_menu
+    menu_label = 'Answers'
+    menu_label = "Qwester #{menu_label}" unless Qwester.active_admin_menu
+    menu :parent => Qwester.active_admin_menu, :label => menu_label
 
     actions :all, :except => [:edit]
 

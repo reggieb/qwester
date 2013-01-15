@@ -1,8 +1,10 @@
 module Qwester
 
-  ActiveAdmin.register RuleSet, :as => 'Rule Sets' do
+  ActiveAdmin.register RuleSet do
     
-    menu :parent => Qwester.active_admin_menu
+    menu_label = 'Rule Sets'
+    menu_label = "Qwester #{menu_label}" unless Qwester.active_admin_menu
+    menu :parent => Qwester.active_admin_menu, :label => menu_label
 
     index do
       column :title

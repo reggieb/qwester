@@ -1,8 +1,10 @@
 module Qwester
 
-  ActiveAdmin.register Questionnaire, :as => 'Questionnaires' do
+  ActiveAdmin.register Questionnaire do
     
-    menu :parent => Qwester.active_admin_menu
+    menu_label = 'Questionnaires'
+    menu_label = "Qwester #{menu_label}" unless Qwester.active_admin_menu
+    menu :parent => Qwester.active_admin_menu, :label => menu_label
 
     index do
       column :image do |questionnaire|
