@@ -13,4 +13,17 @@ initializer in your application.
 
     config.load_paths << Qwester.active_admin_load_path
 
-See test/dummy/config/initializers/active_admin for an example
+See test/dummy/config/initializers/active_admin.rb for an example
+
+Links to the admin pages for Qwester models will appear in a 'Qwester' sub-menu.
+If you wish to change the name of the menu parent group, add this to an 
+initializer:
+
+    Qwester.active_admin_menu = 'menu name'
+
+Alternatively, if you want the Qwester models not to be grouped add this to an
+initializer:
+
+    Qwester.active_admin_menu = 'none'
+
+See test/dummy/config/initializers/qwester.rb for an example

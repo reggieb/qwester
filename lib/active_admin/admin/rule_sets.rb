@@ -1,6 +1,8 @@
 module Qwester
 
-  ActiveAdmin.register RuleSet do
+  ActiveAdmin.register RuleSet, :as => 'Rule Sets' do
+    
+    menu :parent => Qwester.active_admin_menu
 
     index do
       column :title

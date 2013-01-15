@@ -10,4 +10,19 @@ class QwesterTest < ActiveSupport::TestCase
     assert_equal(expected, Qwester.active_admin_load_path)
   end
   
+  def test_active_admin_menu
+    assert_equal('Qwester', Qwester.active_admin_menu)
+  end
+  
+  def test_setting_active_admin_menu
+    text = 'Foo'
+    Qwester.active_admin_menu = text
+    assert_equal(text, Qwester.active_admin_menu)
+  end
+  
+  def test_active_admin_menu_none
+    Qwester.active_admin_menu = 'none'
+    assert_nil(Qwester.active_admin_menu)
+  end
+  
 end

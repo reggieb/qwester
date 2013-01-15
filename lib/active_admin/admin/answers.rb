@@ -1,6 +1,8 @@
 module Qwester
 
-  ActiveAdmin.register Answer do
+  ActiveAdmin.register Answer, :as => 'Answers' do
+    
+    menu :parent => Qwester.active_admin_menu
 
     actions :all, :except => [:edit]
 

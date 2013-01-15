@@ -1,6 +1,8 @@
 module Qwester
 
-  ActiveAdmin.register Questionnaire do
+  ActiveAdmin.register Questionnaire, :as => 'Questionnaires' do
+    
+    menu :parent => Qwester.active_admin_menu
 
     index do
       column :image do |questionnaire|

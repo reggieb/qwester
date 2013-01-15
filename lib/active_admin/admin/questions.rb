@@ -1,6 +1,8 @@
 module Qwester
 
-  ActiveAdmin.register Question do
+  ActiveAdmin.register Question, :as => 'Questions' do
+    
+    menu :parent => Qwester.active_admin_menu
 
     index do
       column :ref
