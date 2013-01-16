@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class QwesterTest < ActiveSupport::TestCase
+  
+  def setup
+    Qwester.active_admin_menu = nil
+  end
+  
   def test_qwester_set_up_as_a_module
     assert_kind_of Module, Qwester
   end
