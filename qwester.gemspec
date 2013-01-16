@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["rob@undervale.co.uk"]
   s.homepage    = "https://github.com/reggieb/qwester"
   s.summary     = "Questionnaire engine with configurable questions and answers"
-  s.description = "Questionnairs have many questions. Questions have many answers. Qwester manages these objects and the relationships the join them."
+  s.description = "Questionnaires have many questions. Questions have many answers. Answers match Rule Sets. Qwester manages these objects and the relationships that join them."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
