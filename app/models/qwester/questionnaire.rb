@@ -29,7 +29,11 @@ module Qwester
       }
     )
 
-    has_and_belongs_to_many :answer_stores, :uniq => true
+    has_and_belongs_to_many(
+      :answer_stores, 
+      :join_table => :qwester_answer_stores_questionnaires,
+      :uniq => true
+    )
 
     validates :title, :presence => true
 

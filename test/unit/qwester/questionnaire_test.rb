@@ -13,6 +13,10 @@ module Qwester
         @questionnaire.no_such_method
       end
     end
+    
+    def test_habtm_joins
+      @questionnaire.answer_stores << AnswerStore.first
+    end
   end
   
 end
