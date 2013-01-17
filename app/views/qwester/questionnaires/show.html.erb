@@ -1,0 +1,32 @@
+<h1><%= @questionnaire.title %></h1>
+
+<%  if @questionnaire.description.present? %>
+<%= content_tag('div', sanitize(@questionnaire.description)) %>
+<% else %> 
+<h2>Questions</h2>
+<% end %>
+
+<%= form_for(@questionnaire, :url => questionnaire_path(@questionnaire)) do |form| %>
+<ul>
+<%=   form.fields_for(@questionnaire.answers, Qwester::Answer) do |answer_form| %>
+<%      @questionnaire.questions.each do |question| %>
+  <li>
+    <%= content_tag(
+          'span', question.title,
+          :class => "label#{' tooltip' if question.description?}",
+          :title => question.description
+        )
+    %>
+
+    <%= qwester_answers_selection_list(question) %>
+
+  </li>
+<%       end %>
+<%    end %>
+</ul>
+
+<p>
+  <%= form.submit('Submit') %>
+  <%= link_to('Back to the menu', questionnaires_path) %>
+</p>
+<% end %>

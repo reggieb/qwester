@@ -2,6 +2,7 @@ require "qwester/engine"
 require 'acts_as_list'
 require 'paperclip'
 require 'random_string'
+require 'rails/actionpack/lib/action_controller/base'
 
 module Qwester
   

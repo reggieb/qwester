@@ -1,0 +1,39 @@
+<h1>Questionnaires</h1>
+<div>
+<% @questionnaires.each do |questionnaire| %>
+
+  <%= link_to(
+        image_tag(questionnaire.button_image.url(:link)), 
+        questionnaire_path(questionnaire),
+        :class => 'image_link'
+      ) 
+  %>
+  <br>
+  <%= link_to(
+        questionnaire.title, 
+        questionnaire_path(questionnaire),
+        :class => 'text_link'
+      ) 
+  %>
+
+<% end %>
+</div>
+
+<% if @rule_sets.present?  %>
+<h2>Matching rule sets</h2>
+<ul>
+<% @rule_sets.each do |rule_set| %>
+  <li>
+    <%= rule_set.title %>:
+    <%= link_to(rule_set.link_text, rule_set.url) %>
+  </li>
+<% end %>
+</ul>
+<% end %>
+
+<%= 
+  content_tag(
+    'p', 
+    link_to('Clear answers and start again', reset_questionnaires_path)
+  ) if @rule_sets.present? 
+%>
