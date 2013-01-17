@@ -19,11 +19,8 @@ module Qwester
     end
 
     def answer_store_answers
-      @answer_store_answers ||= get_answer_store_answers
-    end
-
-    def get_answer_store_answers
-      get_qwester_answer_store ? @qwester_answer_store.answers : []
+      answer_store = get_qwester_answer_store
+      answer_store ? answer_store.answers : []
     end
   end
 end
