@@ -45,7 +45,7 @@ which will return an array of rule sets that match those answers.
 Each rule set has an url associated with it, and this url should lead a user
 to a resource either within or outside the app.
 
-RuleSet uses [array_logic](https://github.com/reggieb/array_logic) to manage 
+RuleSet uses [array_logic](http://github.com/reggieb/array_logic) to manage 
 the logic used to compare each rule set with the array of answers.
 
 == Dummy
