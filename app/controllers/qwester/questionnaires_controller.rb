@@ -13,13 +13,13 @@ module Qwester
     def update
       @questionnaire = Qwester::Questionnaire.find(params[:id])
       update_qwester_answer_store
-      redirect_to :action => :index
+      redirect_to questionnaires_path
     end
 
     def reset
       get_qwester_answer_store
       @qwester_answer_store.reset
-      redirect_to :action => :index
+      redirect_to questionnaires_path
     end
   end
 end
