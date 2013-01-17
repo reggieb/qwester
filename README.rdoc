@@ -1,6 +1,57 @@
 = Qwester
 
+A rails engine used to add questionnaires to rails applications
 
+== Installation
+
+Add this to your Gemfile
+
+    gem 'qwester'
+
+== Questionnaire
+
+To create a new questionnaire, first create a set of questions that you
+wish to appear within the questionnaire. Then create a questionnaire and
+associate the questions with that questionnaire. Questions can be used in
+multiple questionnaires, and can be ordered within each questionnaire. That
+is, the first question in one questionnaire, can be displayed as the second
+question in another questionnaire.
+
+== Questions and Answers
+
+Each question has a number of answers associated with it. The default set of
+answers is given by:
+
+    Qwester::Answer.standard_values
+
+However, these can be modified and added to as you require. That is, each
+question has a unique set of answers that can be modified as required.
+
+== Answer store
+
+Submitted answers are stored in an AnswerStore object. On creation, each 
+answer_store is assigned a session_id that can then be used within session,
+to identify the current user's answer_store. In this way, questionnaire 
+submissions can be tracked across multiple submissions.
+
+== Rule set
+
+Groups of answers can be matched to rule sets using:
+
+    RuleSet.matching(answers)
+
+which will return an array of rule sets that match those answers.
+
+Each rule set has an url associated with it, and this url should lead a user
+to a resource either within or outside the app.
+
+RuleSet uses [array_logic][1] to manage the logic used to compare each rule
+set with the array of answers.
+
+== Dummy
+
+A test app is present within this engine, and provides an example of how
+Qwester can be used within a Rails app. See test/dummy.
 
 == Integration with ActiveAdmin
 
@@ -34,3 +85,5 @@ initializer:
     Qwester.active_admin_menu = 'none'
 
 See test/dummy/config/initializers/qwester.rb for an example
+
+[1]: https://github.com/reggieb/array_logic "array_logic on github"
