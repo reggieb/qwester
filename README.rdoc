@@ -6,7 +6,8 @@
 
 Qwester contains a set of ActiveAdmin registration files, that allow Qwester
 models to be managed from within the parent app's active_admin space. Of course
-ActiveAdmin needs to be installed and working in the parent rails application
+ActiveAdmin needs to be installed and working in the parent rails application,
+for this to work.
 
 To use the Qwester ActiveAdmin registration files, add this to the active_admin 
 initializer in your application.
@@ -14,6 +15,12 @@ initializer in your application.
     config.load_paths << Qwester.active_admin_load_path
 
 See test/dummy/config/initializers/active_admin.rb for an example
+
+If you wish to over-ride some of Qwester's active admin registrations you will
+need to reorder the active_admin load_paths. In this case, use this form of
+the load_paths declaration:
+
+    config.load_paths = [Qwester.active_admin_load_path] + config.load_paths
 
 Links to the admin pages for Qwester models will appear in a 'Qwester' sub-menu.
 If you wish to change the name of the menu parent group, add this to an 
