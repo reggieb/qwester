@@ -43,6 +43,19 @@ answers is given by:
 However, these can be modified and added to as you require. That is, each
 question has a unique set of answers that can be modified as required.
 
+=== Answer selection list helper
+
+The helper method qwester_answers_selection_list will output a set of form
+elements matching the answers for the given question, as an unordered list.
+The form elements will be radio buttons unless the question is marked as 
+'multi-answer', in which case check boxes will be used.
+
+    <%= qwester_answers_selection_list(question) %>
+
+The controller method update_qwester_answer_store can be used to manage the
+data submitted from these form elements. It will add the answers to the 
+current answer store.
+
 === Answer store
 
 Submitted answers are stored in an AnswerStore object. On creation, each 
