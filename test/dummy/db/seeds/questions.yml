@@ -1,0 +1,21 @@
+Q1: 
+  title: Blue
+  questions:
+    a:
+      title: Other blue favourites
+      question:  Is blue your favourite colour?	
+      url: https://www.google.co.uk/search?q=favourite+blue
+  
+    b:
+      title: 
+      question: Is the sky blue?
+      url: https://www.google.co.uk/search?q=sky+blue
+
+
+Q2:
+  title: Qwester
+  questions:
+    a:
+      title: As you like qwester
+      question: Do you like qwester?
+      url: https://github.com/reggieb/qwester
