@@ -24,4 +24,12 @@ module Qwester
     @active_admin_menu = menu
   end
   
+  def self.session_key
+    @session_key || :qwester_answer_store
+  end
+  
+  def self.session_key=(key)
+    @session_key = key
+  end
+  
 end

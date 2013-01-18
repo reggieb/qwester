@@ -9,7 +9,7 @@ module ActionController
     end
 
     def get_qwester_answer_store(create_new = false)
-      if session[:qwester_answer_store]
+      if session[Qwester.session_key]
         current_qwester_answer_store
       elsif create_new
         new_qwester_answer_store
@@ -18,7 +18,7 @@ module ActionController
     helper_method :get_qwester_answer_store
 
     def current_qwester_answer_store
-      @qwester_answer_store = Qwester::AnswerStore.find_by_session_id(session[:qwester_answer_store])
+      @qwester_answer_store = Qwester::AnswerStore.find_by_session_id(session[Qwester.session_key])
     end
 
     def new_qwester_answer_store
@@ -27,7 +27,7 @@ module ActionController
     
     def set_qwester_answer_store(answer_store)
       @qwester_answer_store = answer_store
-      session[:qwester_answer_store] = @qwester_answer_store.session_id
+      session[Qwester.session_key] = @qwester_answer_store.session_id
       @qwester_answer_store
     end
     

@@ -63,6 +63,12 @@ answer_store is assigned a session_id that can then be used within session,
 to identify the current user's answer_store. In this way, questionnaire 
 submissions can be tracked across multiple submissions.
 
+By default the current answer_store.session_id is stored in 
+session[:qwester_answer_store]. If you wish to use a different session key,
+set Qwester.session_key in the qwester initializer:
+
+    Qwester.session_key = :your_preferred_key
+
 === Rule set
 
 Groups of answers can be matched to rule sets using:

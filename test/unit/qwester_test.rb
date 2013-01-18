@@ -4,6 +4,7 @@ class QwesterTest < ActiveSupport::TestCase
   
   def setup
     Qwester.active_admin_menu = nil
+    Qwester.session_key = nil
   end
   
   def test_qwester_set_up_as_a_module
@@ -28,6 +29,16 @@ class QwesterTest < ActiveSupport::TestCase
   def test_active_admin_menu_none
     Qwester.active_admin_menu = 'none'
     assert_nil(Qwester.active_admin_menu)
+  end
+  
+  def test_session_key
+    assert_equal(:qwester_answer_store, Qwester.session_key)
+  end
+  
+  def test_setting_session_key
+    key = :something_else
+    Qwester.session_key = key
+    assert_equal(key, Qwester.session_key)
   end
   
 end

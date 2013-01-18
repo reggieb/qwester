@@ -38,7 +38,7 @@ module Qwester
       )
       answer_store = AnswerStore.last
       assert_equal(@question, @answer.question)
-      assert_equal(answer_store.session_id, session[:qwester_answer_store])
+      assert_equal(answer_store.session_id, session[Qwester.session_key])
       assert_response :redirect
     end
     
