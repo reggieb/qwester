@@ -2,7 +2,7 @@ class CreateRuleSets < ActiveRecord::Migration
   def change
     create_table :qwester_rule_sets do |t|
       t.string :title
-      t.string :description
+      t.text :description
       t.string :url
       t.timestamps
     end
