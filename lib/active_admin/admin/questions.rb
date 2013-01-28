@@ -21,7 +21,7 @@ module Qwester
     end
 
     show do
-      para("References: #{question.ref}") if qwester_question.ref.present?
+      para("References: #{qwester_question.ref}") if qwester_question.ref.present?
       para(qwester_question.description)
       h3 "Answers"
       para "User can select one#{' or many' if qwester_question.multi_answer?} of:"
