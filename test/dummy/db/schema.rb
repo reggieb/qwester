@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(:version => 20130111121500) do
 
   create_table "qwester_rule_sets", :force => true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text   "description"
     t.string   "url"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
