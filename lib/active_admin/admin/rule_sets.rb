@@ -66,6 +66,7 @@ module Qwester
           f.input :description, :input_html => { :rows => 3}
         end
         f.input :url
+        f.input :link_text
         f.input :rule, :input_html => { :rows => 3}
   
       end
