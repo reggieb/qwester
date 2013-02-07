@@ -42,6 +42,16 @@ module Qwester
       assert_response :redirect
     end
     
+    def test_update_with_no_answers   
+      put(
+        :update,
+        :id => @questionnaire.id,
+        :use_route => :qwester
+      )
+      assert_equal(nil, session[Qwester.session_key])
+      assert_response :redirect
+    end
+    
     def test_answer_store_created_when_questionnaire_first_submitted
       assert_difference 'AnswerStore.count' do
         test_update

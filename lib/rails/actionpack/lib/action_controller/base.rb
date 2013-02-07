@@ -3,9 +3,11 @@ module ActionController
     
     protected
     def update_qwester_answer_store
-      get_qwester_answer_store(true)
-      add_answers_to_qwester_answer_store
-      add_questionnaire_to_qwester_answer_store
+      if params_includes_answers?
+        get_qwester_answer_store(true)
+        add_answers_to_qwester_answer_store
+        add_questionnaire_to_qwester_answer_store
+      end
     end
 
     def get_qwester_answer_store(create_new = false)
@@ -45,6 +47,10 @@ module ActionController
       answers.flatten!
       remove_answers_to_questions_answered_with(answers) if answers.present?
       @qwester_answer_store.answers = (@qwester_answer_store.answers | answers)      
+    end
+    
+    def params_includes_answers?
+      params[:question_id].kind_of?(Hash) and params[:question_id].values.present?
     end
     
     def remove_answers_to_questions_answered_with(answers)
