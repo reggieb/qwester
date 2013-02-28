@@ -6,7 +6,7 @@ end
 # =======
 # 
 # 0.0.7 - improves deployment process
-#   Fixes a bug in one of the migrations and update the README
+#   Fixes a bug in one of the migrations and updates the README
 # 
 # 0.0.6 - bug fix update
 #   Fixes issue where error raised if user submits a questionnaire without

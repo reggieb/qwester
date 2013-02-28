@@ -27,7 +27,7 @@ If you only wish to run the qwester migrations use a scope option:
 
 === Mounting the engine
 
-To mounth qwester within you rails application, add this to config/routes.rb:
+To mount qwester within you rails application, add this to config/routes.rb:
 
     mount Qwester::Engine => "/questionnires"
 
