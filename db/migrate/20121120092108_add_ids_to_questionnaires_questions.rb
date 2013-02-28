@@ -5,7 +5,7 @@ class AddIdsToQuestionnairesQuestions < ActiveRecord::Migration
     add_column qq_table, :created_at, :datetime
     add_column qq_table, :updated_at, :datetime
 
-    execute "UPDATE #{qq_table} SET created_at = #{Time.now.to_s(:db)}, updated_at = #{Time.now.to_s(:db)};"
+    execute "UPDATE #{qq_table} SET created_at = '#{Time.now.to_s(:db)}', updated_at = '#{Time.now.to_s(:db)}';"
 
     puts "=============================================="
     puts "Now run 'rake qwester:reset_positions RAILS_ENV=#{Rails.env}' to set the positions"
