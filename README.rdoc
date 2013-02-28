@@ -9,6 +9,7 @@ Add this to your Gemfile
     gem 'qwester'
 
 === Migrations
+
 Qwester includes a set of migrations to build the database tables to match
 qwester's models. To use these migrations within the host application, run
 this rake task:
@@ -23,6 +24,12 @@ They will then be run next time the db:migrate task is run:
 If you only wish to run the qwester migrations use a scope option:
 
     rake db:migrate SCOPE=qwester
+
+=== Mounting the engine
+
+To mounth qwester within you rails application, add this to config/routes.rb:
+
+    mount Qwester::Engine => "/questionnires"
 
 == Questionnaire
 

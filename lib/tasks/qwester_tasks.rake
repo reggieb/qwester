@@ -1,8 +1,3 @@
-# desc "Explaining what the task does"
-# task :qwester do
-#   # Task goes here
-# end
-
 namespace :qwester do
 
   # Usage: rake data:reset_positions RAILS_ENV=production
