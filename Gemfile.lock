@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    qwester (0.0.6)
+    qwester (0.0.7)
       acts_as_list
       array_logic
       paperclip (~> 3.0)
