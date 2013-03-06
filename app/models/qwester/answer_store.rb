@@ -13,6 +13,10 @@ module Qwester
     )
 
     before_save :generate_session_id
+    
+    def self.destroy_unpreserved
+      where('preserved IS NULL').destroy_all
+    end
 
     def reset
       answers.clear

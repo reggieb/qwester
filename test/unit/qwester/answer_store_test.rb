@@ -68,6 +68,55 @@ module Qwester
       assert_equal([], @preserved.answers)
       assert_equal([], @preserved.questionnaires)
     end
+    
+    def test_destroy_unpreserved
+      assert_not_equal(0, AnswerStore.count)
+      AnswerStore.destroy_unpreserved
+      assert_equal(0, AnswerStore.count)
+    end
+    
+    def test_destroy_unpreserved_does_not_remove_preserved
+      count = AnswerStore.count
+      test_preserve
+      assert_difference 'AnswerStore.count', - count do
+        AnswerStore.destroy_unpreserved
+      end
+      assert_equal(@preserved, AnswerStore.first)
+    end
+    
+    def test_destroy_unpreserved_does_not_destroy_answers
+      test_answer_store_accepts_objects
+      assert_no_difference 'Answer.count' do
+        AnswerStore.destroy_unpreserved
+      end
+    end
+    
+    def test_destroy_unpreserved_does_not_destroy_questionnaires
+      test_answer_store_accepts_objects
+      assert_no_difference 'Questionnaire.count' do
+        AnswerStore.destroy_unpreserved
+      end
+    end
+    
+    def test_destroy_unpreserved_removes_entries_from_answers_join_table
+      test_answer_store_accepts_objects
+      assert_on_destroy_unpreserved_join_entries_removed_for 'answers'
+    end
+    
+    def test_destroy_unpreserved_removes_entries_from_questionnaires_join_table
+      test_answer_store_accepts_objects
+      assert_on_destroy_unpreserved_join_entries_removed_for 'questionnaires'
+    end
+    
+    private
+    def assert_on_destroy_unpreserved_join_entries_removed_for(table)
+      join_table = @answer_store.association(table).join_table.name
+      sql = "SELECT count(*) FROM #{join_table}"
+      original_joins = AnswerStore.connection.select_value(sql)
+      AnswerStore.destroy_unpreserved
+      joins = AnswerStore.connection.select_value(sql)
+      assert_equal(original_joins - 1, joins)
+    end
 
   end
 end
