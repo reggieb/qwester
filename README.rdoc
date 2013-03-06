@@ -76,6 +76,38 @@ set Qwester.session_key in the qwester initializer:
 
     Qwester.session_key = :your_preferred_key
 
+=== Preservation
+
+To preserve an answer store, call its preserve method:
+
+    preserved_answer_store = answer_store.preserve 
+
+This will create a copy of the original answer_store. This copy will have its
+own unique session_id. This session_id can then be used restore the answer_store 
+at a later date. The answer_store#preserved field stores the datetime
+when it was preserved. 
+
+    preserved_answer_store.preserved? == true
+    preserved_answer_store.preserved  --> datetime of preservation
+
+The answers and questionnaires are copied over to the preserved answers store
+
+    answer_store.questionnaires == preserved_answer_store.questionnaires
+    answer_store.answers        == preserved_answer_store.answers
+
+Note that it is the answer store copy that is preserved, and not the original
+
+    answer_store.preserved? == false
+
+A preserved answer store therefore acts as snap shots of an answer_store.
+
+=== Clean up answer stores
+
+A rake task is available that will remove all the unpreserved answer stores that
+are more than a day old.
+
+    rake qwester:destroy_unpreserved_answer_stores RAILS_ENV=production
+
 === Rule set
 
 Groups of answers can be matched to rule sets using:
