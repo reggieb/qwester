@@ -34,16 +34,5 @@ module Qwester
       assert_equal 15, answer_store.session_id.length
     end
 
-    def test_cope_index_sum_with_no_answers
-      assert_equal(0, @answer_store.cope_index_sum)
-    end
-
-    def test_cope_index_sum
-      test_answer_store_accepts_objects
-      assert_equal(0, @answer_store.cope_index_sum)
-      number = 6
-      @answer.update_attribute(:cope_index, number)
-      assert_equal(number, @answer_store.cope_index_sum)
-    end
   end
 end

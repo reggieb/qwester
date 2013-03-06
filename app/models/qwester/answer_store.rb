@@ -14,10 +14,6 @@ module Qwester
 
     before_save :generate_session_id
 
-    def cope_index_sum
-      answers.sum(:cope_index)
-    end
-
     def reset
       answers.clear
       questionnaires.clear
