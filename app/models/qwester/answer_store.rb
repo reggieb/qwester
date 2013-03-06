@@ -22,6 +22,13 @@ module Qwester
     def to_param
       session_id
     end
+    
+    def preserve
+      preserved_store = self.class.create({:preserved => Time.now}, :without_protection => true)
+      preserved_store.answers = answers
+      preserved_store.questionnaires = questionnaires
+      return preserved_store if preserved_store.save
+    end
 
     private
 

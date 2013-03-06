@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130111121500) do
+ActiveRecord::Schema.define(:version => 20130306115340) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130111121500) do
     t.string   "session_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.datetime "preserved"
   end
 
   create_table "qwester_answer_stores_answers", :id => false, :force => true do |t|
@@ -125,7 +126,7 @@ ActiveRecord::Schema.define(:version => 20130111121500) do
 
   create_table "qwester_rule_sets", :force => true do |t|
     t.string   "title"
-    t.text   "description"
+    t.text     "description"
     t.string   "url"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
