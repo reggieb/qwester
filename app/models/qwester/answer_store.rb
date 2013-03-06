@@ -32,7 +32,7 @@ module Qwester
     end
     
     def restore
-      make_copy if self.preserved?
+      make_copy
     end
 
     private
