@@ -15,7 +15,7 @@ module Qwester
     before_save :generate_session_id
     
     def self.destroy_unpreserved
-      where('preserved IS NULL').destroy_all
+      where("updated_at < '#{1.day.ago.to_s(:db)}' AND preserved IS NULL").destroy_all
     end
 
     def reset

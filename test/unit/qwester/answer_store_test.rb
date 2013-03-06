@@ -5,6 +5,7 @@ module Qwester
 
     def setup
       @answer_store = AnswerStore.find(1)
+      @answer_store.update_attribute(:updated_at, 2.days.ago)
       @answer = Answer.find(1)
       @other_answer = Answer.find(2)
       @questionnaire = Questionnaire.find(1)
@@ -106,6 +107,12 @@ module Qwester
     def test_destroy_unpreserved_removes_entries_from_questionnaires_join_table
       test_answer_store_accepts_objects
       assert_on_destroy_unpreserved_join_entries_removed_for 'questionnaires'
+    end
+    
+    def test_destroy_unpreserved_does_not_remove_recent_answer_stores
+      answer_store = AnswerStore.create
+      AnswerStore.destroy_unpreserved
+      assert_equal([answer_store], AnswerStore.all)
     end
     
     private
