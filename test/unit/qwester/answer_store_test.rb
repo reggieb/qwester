@@ -115,6 +115,17 @@ module Qwester
       assert_equal([answer_store], AnswerStore.all)
     end
     
+    def test_restore_preserved
+      test_preserve
+      assert_difference 'AnswerStore.count' do
+        @restored = @preserved.restore
+      end
+      assert_equal(false, @restored.preserved?)
+      assert_not_equal(@preserved.session_id, @restored.session_id)
+      assert_equal(@preserved.answers, @restored.answers)
+      assert_equal(@preserved.questionnaires, @restored.questionnaires)
+    end
+    
     private
     def assert_on_destroy_unpreserved_join_entries_removed_for(table)
       join_table = @answer_store.association(table).join_table.name

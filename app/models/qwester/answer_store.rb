@@ -28,10 +28,11 @@ module Qwester
     end
     
     def preserve
-      preserved_store = self.class.create({:preserved => Time.now}, :without_protection => true)
-      preserved_store.answers = answers
-      preserved_store.questionnaires = questionnaires
-      return preserved_store if preserved_store.save
+      make_copy({:preserved => Time.now}, :without_protection => true)
+    end
+    
+    def restore
+      make_copy if self.preserved?
     end
 
     private
@@ -40,6 +41,13 @@ module Qwester
       if !self.session_id or self.session_id.empty?
         self.session_id = RandomString.new(15)
       end
+    end
+    
+    def make_copy(*args)
+      copy = self.class.create(*args)
+      copy.answers = answers
+      copy.questionnaires = questionnaires
+      return copy if copy.save
     end
   end
 end
