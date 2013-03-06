@@ -4,8 +4,6 @@ namespace :qwester do
   desc "Goes through each of the acts_as_list objects and resets the positions based on order they were added to the database"
   task :reset_positions => :environment do
 
-
-
     Qwester::Questionnaire.all.each do |questionnaire|
       first_id = questionnaire.questionnaires_questions.minimum(:id)
       if first_id   # nil if questionnaire has no questions
@@ -14,10 +12,14 @@ namespace :qwester do
       end
     end
 
-
-
     puts "Positions reset"
   end
 
-
+  desc "Removes unpreserved answer stores"
+  task :destroy_unpreserved_answer_stores => :environment do
+    before = Qwester::AnswerStore.count
+    Qwester::AnswerStore.destroy_unpreserved
+    after = Qwester::AnswerStore.count
+    puts "#{before - after} answer stores removed, with #{after} remaining."
+  end
 end
