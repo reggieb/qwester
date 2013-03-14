@@ -9,7 +9,7 @@ class AddIdsToQuestionnairesQuestions < ActiveRecord::Migration
     execute "UPDATE #{qq_table} SET created_at = '#{Time.now.to_s(:db)}', updated_at = '#{Time.now.to_s(:db)}';"
 
     puts "=============================================="
-    puts "Now run 'rake data:reset_positions RAILS_ENV=#{Rails.env}' to set the positions"
+    puts "Now run 'rake qwester:reset_positions RAILS_ENV=#{Rails.env}' to set the positions"
     puts "=============================================="
   end
   
