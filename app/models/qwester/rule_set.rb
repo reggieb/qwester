@@ -27,7 +27,7 @@ module Qwester
 
 
     def self.matching(answers)
-      all.collect{|rule_set| rule_set if rule_set.match(answers)}.compact
+      all.select{|rule_set| rule_set.match(answers)}
     end
 
     def match(answers_to_check = nil)
