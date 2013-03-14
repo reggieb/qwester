@@ -39,7 +39,7 @@ module Qwester
 
     def generate_session_id
       if !self.session_id or self.session_id.empty?
-        self.session_id = RandomString.new(15)
+        self.session_id = session_id_not_in_database
       end
     end
     
@@ -48,6 +48,16 @@ module Qwester
       copy.answers = answers
       copy.questionnaires = questionnaires
       return copy if copy.save
+    end
+    
+    def session_id_not_in_database
+      session_ids = get_session_ids
+      random_string = RandomString.new(15) until random_string and !session_ids.include?(random_string)
+      return random_string
+    end
+  
+    def get_session_ids
+      self.class.select(:session_id).collect(&:session_id)
     end
   end
 end

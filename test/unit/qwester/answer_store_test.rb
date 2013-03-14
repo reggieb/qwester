@@ -126,6 +126,11 @@ module Qwester
       assert_equal(@preserved.questionnaires, @restored.questionnaires)
     end
     
+    def test_get_session_ids
+      test_preserve # to populate database with extra answer_stores
+      assert_equal(AnswerStore.all.collect(&:session_id).sort, @answer_store.send(:get_session_ids).sort)
+    end
+    
     private
     def assert_on_destroy_unpreserved_join_entries_removed_for(table)
       join_table = @answer_store.association(table).join_table.name
