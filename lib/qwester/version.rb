@@ -1,9 +1,13 @@
 module Qwester
-  VERSION = "0.0.8"
+  VERSION = "0.0.9"
 end
 
 # History
 # =======
+# 
+# 0.0.9 - maintenance update
+#   Removes cope_index from migrations.
+#   Ensures answer_store#session_id is unique
 # 
 # 0.0.8 - add facility to preserve answer stores
 #   This allows snaps shots to be taken, and redundant answer stores to be 
