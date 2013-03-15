@@ -1,9 +1,3 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
   questionnaire_id: 1
-  presentation_id: 1
-
-two:
-  questionnaire_id: 2
   presentation_id: 1

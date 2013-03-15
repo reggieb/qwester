@@ -6,16 +6,25 @@ module Qwester
       @questionnaire = Questionnaire.find(1)
       @question = Question.find(1)
       @answer = @question.answers.find(1)
+      @presentation = Presentation.find(1)
     end
 
     def test_setup
       assert_equal(2, @question.answers.count)
+      assert_not_equal(@presentation.questionnaires, Questionnaire.all)
     end
 
     def test_index
       get :index, :use_route => :qwester
       assert_response :success
       assert_equal(Questionnaire.all, assigns('questionnaires'))
+    end
+    
+    def test_index_with_presentation
+      get :index, {:use_route => :qwester}, :presentation => @presentation.name
+      assert_response :success
+      assert_equal(@presentation.name, session[:presentation])
+      assert_equal(@presentation.questionnaires, assigns('questionnaires'))
     end
 
     def test_show

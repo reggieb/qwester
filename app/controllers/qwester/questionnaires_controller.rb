@@ -2,7 +2,7 @@ module Qwester
   class QuestionnairesController < ApplicationController
 
     def index
-      @questionnaires = Qwester::Questionnaire.all
+      @questionnaires = current_questionnaires
       @rule_sets = matching_rule_sets
     end
 
