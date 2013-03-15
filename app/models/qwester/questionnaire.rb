@@ -34,6 +34,13 @@ module Qwester
       :join_table => :qwester_answer_stores_questionnaires,
       :uniq => true
     )
+    
+    has_many :presentation_questionnaires
+    
+    has_many(
+      :presentations,
+      :through => :presentation_questionnaires
+    )
 
     validates :title, :presence => true
 

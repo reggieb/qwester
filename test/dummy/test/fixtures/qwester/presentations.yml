@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  name: Start
+  title: The starting point
+  description: This is the first set of questionnaires
+
+two:
+  id: 2
+  name: Main
+  title: Main set of questionnaires
+  description: This is another set of questionnaires

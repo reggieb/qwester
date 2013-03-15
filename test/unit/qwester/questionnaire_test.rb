@@ -14,8 +14,12 @@ module Qwester
       end
     end
     
-    def test_habtm_joins
+    def test_habtm_joins_to_answer_store
       @questionnaire.answer_stores << AnswerStore.first
+    end
+    
+    def test_presentation
+      assert_equal([Presentation.find(1)], @questionnaire.presentations)
     end
   end
   
