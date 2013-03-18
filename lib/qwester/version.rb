@@ -1,9 +1,15 @@
 module Qwester
-  VERSION = "0.0.9"
+  VERSION = "0.1.0"
 end
 
 # History
 # =======
+# 
+# 0.1.0 - Add presentations as a way of controlling the display of questionnaires
+#   Allows admin to define groups of questionnaires as presentation views
+#   and rule sets that will display a presentation when triggered. In that way 
+#   the list of questionnaires being displayed can change as questionnaires are
+#   submitted.
 # 
 # 0.0.9 - maintenance update
 #   Removes cope_index from migrations.

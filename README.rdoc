@@ -133,6 +133,57 @@ to a resource either within or outside the app.
 RuleSet uses array_logic[http://github.com/reggieb/array_logic] to manage 
 the logic used to compare each rule set with the array of answers.
 
+== Presentation
+
+Questionnaires can be grouped into Presentations, and these are used to
+control which questionnaires are displayed (presented to the user) at
+any time. 
+
+All questionnaires are display at the engine root unless:
+
+* A presentation is set as 'default'
+
+* An existing presentation's name is added to session[:presentations] 
+(an array)
+
+=== Restricting the questionnaires displayed
+
+If you do not want to display all the available questionnaires, create
+a presentation, set it as 'default' and add to it the questionnaires you
+wish to display.
+
+=== Using a questionnaire to control access to other questionnaires
+
+Say you have three presentations of questionnaires, and you want to display
+one initially. Then you want to use the answers submitted from that 
+questionnaire, to control which of the other two sets of questionnaires are
+displayed next.
+
+To do this set the initial presentation as default. Then create two rule
+sets, one for each of the other presentations. Update each rule set to
+match the answer pattern that should be submitted for the associated
+pattern to be displayed, and set rule_set#presentation to the name of
+the presentation you wish displayed when the rule is matched.
+
+Then when the first set of questionnaires are submitted, the rules will be
+checked, and if one of the two rules sets matches the submitted answers, 
+the associated presentation's questionnaires will be displayed.
+
+=== Simple rule matching for presentations
+
+The rule matching is simple and if two presentation rules match, the system
+will not try to work out which one it should display. It will just show the
+last one it finds. So some care is required when setting up presentations
+with matching rule sets to avoid overlaps and clashes.
+
+=== Once only match
+
+Once a presentation has been matched, it cannot be returned to later. That
+is if there are two presentations: 'one' and 'two', you cannot have a work
+flow that goes from one to two and then back to one, unless you reset or
+otherwise manipulate session[:presentations]. Instead you should clone 'one'
+as a new presentation e.g. 'three', and then go from one to two to three.
+
 == Dummy
 
 A test app is present within this engine, and provides an example of how
