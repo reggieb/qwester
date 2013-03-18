@@ -33,13 +33,46 @@ module ActionController
       @qwester_answer_store
     end
     
-    def matching_rule_sets
+    def match_rule_sets
       if get_qwester_answer_store
-        Qwester::RuleSet.matching(@qwester_answer_store.answers)
+        @qwester_rule_sets = Qwester::RuleSet.matching(@qwester_answer_store.answers)
+        get_presentation_from_rule_sets
+        return @qwester_rule_sets
+      end
+    end
+    alias_method :matching_rule_sets, :match_rule_sets
+        
+    def current_questionnaires
+      match_rule_sets
+      presentation_questionnaires || default_presentation_questionnaires || Qwester::Questionnaire.all
+    end
+    
+    def presentation_questionnaires
+      presentation = Qwester::Presentation.find_by_name(session[:presentations].last) if session[:presentations]
+      presentation.questionnaires if presentation
+    end
+    
+    def default_presentation_questionnaires
+      presentation = Qwester::Presentation.find_by_default(true)
+      presentation.questionnaires if presentation
+    end
+    
+    def get_presentation_from_rule_sets
+      @qwester_rule_sets.clone.each do |rule_set|
+        next unless rule_set.presentation?
+        add_presentation_to_session rule_set.presentation
+        @qwester_rule_sets.delete(rule_set)
       end
     end
     
-#    private
+    def add_presentation_to_session(presentation)
+      session_presentations = session[:presentations] || []
+      unless session_presentations.include? presentation
+        session_presentations << presentation
+        session[:presentations] = session_presentations
+      end
+    end
+    
     def add_answers_to_qwester_answer_store
       answers = params[:question_id].values.collect do |question_values|
         question_values[:answer_ids].collect{|id| Qwester::Answer.find(id)}

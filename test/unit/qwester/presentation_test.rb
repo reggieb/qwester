@@ -16,8 +16,45 @@ module Qwester
       assert_equal([], empty_presentation.questionnaires)
     end
     
+    def test_valid_names
+      valid = %w{this that foo_bar HeyHo this1 that2 123}
+      valid.each do |name|
+        @presentation.name = name
+        assert(@presentation.save, "#{name} should be a valid  presentation name #{@presentation.errors.full_messages}")
+      end
+    end
+    
+    def test_invalid_names
+      invalid = ['This and that', 'foo bar', '$this', '@that']
+      invalid.each do |name|
+        @presentation.name = name
+        assert(!@presentation.save, "'#{name}' should be an invalid presentation name")
+      end
+    end
+    
+    def test_title_created_from_name
+      @presentation.name = "foo_bar"
+      @presentation.title = nil
+      @presentation.save
+      assert_equal('Foo bar', @presentation.title)
+    end
+    
+    def test_set_as_default
+      assert !@presentation.default?, "Presentation should not be default at start"
+      @presentation.update_attribute(:default, true)
+      assert @presentation.default?, "Presentation should be default"
+      assert !empty_presentation.reload.default?, "Empty presentation should not be default"
+    end
+    
+    def test_set_as_default_when_other_presentation_default
+      test_set_as_default
+      empty_presentation.update_attribute(:default, true)
+      assert !@presentation.reload.default?, "Presentation should not be default"
+      assert empty_presentation.default?, "Empty presentation should be default"
+    end
+    
     def empty_presentation
-      Presentation.find(2)
+      @empty_presentation ||= Presentation.find(2)
     end
     
   end

@@ -3,7 +3,6 @@ module Qwester
 
     def index
       @questionnaires = current_questionnaires
-      @rule_sets = matching_rule_sets
     end
 
     def show

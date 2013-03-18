@@ -114,6 +114,18 @@ module Qwester
       @rule_set.save
       assert(@rule_set.errors[:rule].present?, "there should be an error against the rule field")
     end
+    
+    def test_rule_has_url
+      @rule_set.url = nil
+      assert(@rule_set.invalid?, "RuleSet should be invalid if no url")
+      assert(@rule_set.errors[:url], "Error should be on url field")
+    end
+    
+    def test_rule_valid_without_url_if_presentation_set
+      @rule_set.presentation = 'something'
+      @rule_set.url = nil
+      assert(@rule_set.valid?, "RuleSet should be valid")
+    end
 
     private
     def assert_no_rule_set_match(answers = nil)

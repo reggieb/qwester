@@ -6,6 +6,8 @@ module Qwester
     menu_label = "Qwester #{menu_label}" unless Qwester.active_admin_menu
     menu :parent => Qwester.active_admin_menu, :label => menu_label
 
+    config.batch_actions = false
+    
     index do
       column :image do |questionnaire|
         image_tag(questionnaire.button_image.url(:thumbnail))

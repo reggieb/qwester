@@ -1,7 +1,7 @@
 require 'array_logic'
 module Qwester
   class RuleSet < ActiveRecord::Base
-    attr_accessible :title, :description, :answers, :url, :rule, :answer_ids, :link_text, :warning_id
+    attr_accessible :title, :description, :answers, :url, :rule, :answer_ids, :link_text, :warning_id, :presentation
 
     before_save :keep_answers_in_step_with_rule
 
@@ -23,7 +23,7 @@ module Qwester
     validate :check_rule_is_valid
 
     validates :title, :presence => true
-    validates :url, :presence => true
+    validates :url, :presence => {:unless => :presentation?}
 
 
     def self.matching(answers)

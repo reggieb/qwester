@@ -7,6 +7,7 @@ module Qwester
     menu :parent => Qwester.active_admin_menu, :label => menu_label
 
     actions :all, :except => [:edit]
+    config.batch_actions = false
 
     index do
       column :id
@@ -15,7 +16,6 @@ module Qwester
         link_to(answer.question.title, edit_admin_qwester_question_path(answer.question)) if answer.question
       end
       column :position
-      column :cope_index
       default_actions
     end
     

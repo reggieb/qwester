@@ -6,8 +6,11 @@ module Qwester
     menu_label = "Qwester #{menu_label}" unless Qwester.active_admin_menu
     menu :parent => Qwester.active_admin_menu, :label => menu_label
 
+    config.batch_actions = false
+    
     index do
       column :title
+      column :presentation
       column :answers do |rule_set|
         rule_set.answers.count
       end
@@ -57,6 +60,25 @@ module Qwester
 
     end
     
+    sidebar :presentations do
+      para <<EOF
+If a rule is assigned a presentation, that presentation's questionnaires will
+be displayed when the rule is matched.
+EOF
+      
+      para <<EOF
+There is no mechanism to handle multiple rules with presentations, being trigged 
+at the same time. The app will just display the questionnaires assigned to the 
+last rule_set.presentation it finds. So some care should be taken to avoid 
+clashes.
+EOF
+      
+      para <<EOF
+A rule set with a presentation, will change the display. It will not display
+an output tab, any url associated with the rule will be ignored.     
+EOF
+    end
+    
     form do |f|
       f.inputs "Details" do
         f.input :title
@@ -70,6 +92,10 @@ module Qwester
       f.inputs "Output Link" do
         f.input :url
         f.input :link_text        
+      end
+      
+      f.inputs "Change Presentation of Questionnaires" do
+        f.input :presentation, :as => :select, :collection => Presentation.all.collect(&:name), :include_blank => 'No effect on presentation'
       end
       
       f.inputs "Logic" do
@@ -121,6 +147,15 @@ module Qwester
         h3 'Target url'
         para link_to qwester_rule_set.url
         para qwester_rule_set.link_text? ? qwester_rule_set.link_text : 'No link text specified'
+      end
+      
+      div do
+        h3 'Presentation'
+        if qwester_rule_set.presentation?
+          para "The presentations of questionnaires should change to: #{qwester_rule_set.presentation}"
+        else
+          para "The presentations of questionnaires should be unaffected by this rule"
+        end
       end
       
       div do

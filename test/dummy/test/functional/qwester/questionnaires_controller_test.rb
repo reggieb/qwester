@@ -21,11 +21,36 @@ module Qwester
     end
     
     def test_index_with_presentation
-      get :index, {:use_route => :qwester}, :presentation => @presentation.name
+      get :index, {:use_route => :qwester}, :presentations => [@presentation.name]
       assert_response :success
-      assert_equal(@presentation.name, session[:presentation])
+      assert_equal([@presentation.name], session[:presentations])
       assert_equal(@presentation.questionnaires, assigns('questionnaires'))
     end
+    
+    def test_index_with_presentation_and_history_of_other_presentation
+      names = [other_presentation.name, @presentation.name]
+      get :index, {:use_route => :qwester}, :presentations => names
+      assert_response :success
+      assert_equal(names, session[:presentations])
+      assert_equal(@presentation.questionnaires, assigns('questionnaires'))
+    end
+    
+    def test_index_with_other_presentation_and_history_of_presentation
+      other = other_presentation
+      names = [@presentation.name, other.name]
+      get :index, {:use_route => :qwester}, :presentations => names
+      assert_response :success
+      assert_equal(names, session[:presentations])
+      assert_equal(other.questionnaires, assigns('questionnaires'))
+    end
+    
+    def test_index_with_default_presentation
+      @presentation.update_attribute :default, true
+      get :index, {:use_route => :qwester}
+      assert_response :success
+      assert_equal(@presentation.questionnaires, assigns('questionnaires'))
+      assert_equal(nil, session[:presentations])      
+    end    
 
     def test_show
       get :show, :id => @questionnaire.id, :use_route => :qwester
@@ -117,7 +142,7 @@ module Qwester
       rule_set.answers << AnswerStore.last.answers.first
       rule_set.save
       get :index, :use_route => :qwester
-      assert_equal([rule_set], assigns['rule_sets'])
+      assert_equal([rule_set], assigns['qwester_rule_sets'])
     end
 
     def test_reset
@@ -144,8 +169,39 @@ module Qwester
         test_update
       end
     end
+      
+    def test_transition_from_default_to_final_via_submission_of_questionnaire
+      @target_presentation = Presentation.find(2)
+      @target_presentation.questionnaires = [Questionnaire.find(2)]
+      @target_presentation.save
+      @rule_set = RuleSet.find(1)
+      @rule_set.answers = [@answer]
+      @rule_set.presentation = @target_presentation.name
+      @rule_set.save
+      @presentation.update_attribute :default, true
+      get :index, :use_route => :qwester
+      assert_equal(@presentation.questionnaires, assigns[:questionnaires])
+      put(
+        :update,
+        :id => @questionnaire.id,
+        :question_id => {
+          @question.id.to_s => {
+            :answer_ids => [@answer.id.to_s]
+          }
+        },
+        :use_route => :qwester
+      )
+      assert_response :redirect
+      get :index, :use_route => :qwester
+      assert_equal(@target_presentation.questionnaires, assigns[:questionnaires])
+    end    
 
-
+    private
+    def other_presentation
+      presentation = Presentation.find(2)
+      presentation.questionnaires << Questionnaire.find(2)
+      return presentation
+    end
   end
 
 end

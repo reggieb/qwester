@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315113347) do
+ActiveRecord::Schema.define(:version => 20130318123540) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20130315113347) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.boolean  "default"
   end
 
   create_table "qwester_questionnaires", :force => true do |t|
@@ -142,10 +143,11 @@ ActiveRecord::Schema.define(:version => 20130315113347) do
     t.string   "title"
     t.text     "description"
     t.string   "url"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.text     "rule"
     t.string   "link_text"
+    t.string   "presentation"
   end
 
 end
