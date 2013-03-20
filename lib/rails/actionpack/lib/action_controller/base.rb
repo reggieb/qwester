@@ -48,13 +48,13 @@ module ActionController
     end
     
     def presentation_questionnaires
-      presentation = Qwester::Presentation.find_by_name(session[:presentations].last) if session[:presentations]
-      presentation.questionnaires if presentation
+      @presentation = Qwester::Presentation.find_by_name(session[:presentations].last) if session[:presentations]
+      @presentation.questionnaires if @presentation
     end
     
     def default_presentation_questionnaires
-      presentation = Qwester::Presentation.find_by_default(true)
-      presentation.questionnaires if presentation
+      @presentation = Qwester::Presentation.find_by_default(true)
+      @presentation.questionnaires if @presentation
     end
     
     def get_presentation_from_rule_sets

@@ -20,11 +20,17 @@ module Qwester
       assert_equal(Questionnaire.all, assigns('questionnaires'))
     end
     
+    def test_presentation_not_assigned_when_not_used
+      test_index
+      assert_nil(assigns('presentation'))
+    end
+    
     def test_index_with_presentation
       get :index, {:use_route => :qwester}, :presentations => [@presentation.name]
       assert_response :success
       assert_equal([@presentation.name], session[:presentations])
       assert_equal(@presentation.questionnaires, assigns('questionnaires'))
+      assert_equal(@presentation, assigns('presentation'))
     end
     
     def test_index_with_presentation_and_history_of_other_presentation
@@ -49,7 +55,8 @@ module Qwester
       get :index, {:use_route => :qwester}
       assert_response :success
       assert_equal(@presentation.questionnaires, assigns('questionnaires'))
-      assert_equal(nil, session[:presentations])      
+      assert_equal(nil, session[:presentations])  
+      assert_equal(@presentation, assigns('presentation'))
     end    
 
     def test_show

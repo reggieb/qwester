@@ -143,8 +143,7 @@ All questionnaires are display at the engine root unless:
 
 * A presentation is set as 'default'
 
-* An existing presentation's name is added to session[:presentations] 
-(an array)
+* An existing presentation's name is added to session[:presentations] (an array)
 
 === Restricting the questionnaires displayed
 

@@ -1,9 +1,12 @@
 module Qwester
-  VERSION = "0.1.0"
+  VERSION = "0.1.1"
 end
 
 # History
 # =======
+# 
+# 0.1.1 - Makes presentation object available to controller and views
+#   @presentation used to store current Presentation
 # 
 # 0.1.0 - Add presentations as a way of controlling the display of questionnaires
 #   Allows admin to define groups of questionnaires as presentation views
