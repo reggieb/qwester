@@ -1,9 +1,12 @@
 module Qwester
-  VERSION = "0.1.1"
+  VERSION = "0.1.2"
 end
 
 # History
 # =======
+# 
+# 0.1.2 - Modification to admin pages
+#   Changes CKeditor to use default style.
 # 
 # 0.1.1 - Makes presentation object available to controller and views
 #   @presentation used to store current Presentation
