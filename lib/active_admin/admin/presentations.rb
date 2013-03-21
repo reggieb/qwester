@@ -23,6 +23,7 @@ module Qwester
     
     show do
       h2 qwester_presentation.title
+      div sanitize(qwester_presentation.description) if qwester_presentation.description.present?
       qwester_presentation.questionnaires.each do |questionnaire|
         div(:style => 'display:inline-block;margin-right:20px;') do
           para image_tag(questionnaire.button_image.url(:thumbnail))
