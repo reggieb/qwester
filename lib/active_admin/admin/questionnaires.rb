@@ -23,7 +23,7 @@ module Qwester
       f.inputs "Details" do
         f.input :title
         if defined?(Ckeditor)
-          f.input :description, :as => :ckeditor, :input_html => { :height => 100, :toolbar => 'Basic' }
+          f.input :description, :as => :ckeditor, :input_html => { :height => 100 }
         else
           f.input :description, :input_html => { :rows => 3}
         end
