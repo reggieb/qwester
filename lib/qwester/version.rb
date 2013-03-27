@@ -1,9 +1,12 @@
 module Qwester
-  VERSION = "0.1.2"
+  VERSION = "0.1.3"
 end
 
 # History
 # =======
+# 
+# 0.1.3 - Update to use version of Array Logic that supports functions.
+#   Allows RuleSet#rule to be defined using sum, average or count functions
 # 
 # 0.1.2 - Modification to admin pages
 #   Changes CKeditor to use default style.

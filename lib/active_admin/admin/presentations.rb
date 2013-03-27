@@ -39,7 +39,7 @@ module Qwester
         f.input :title, :label => "Title (or create from name)"
         f.input :default, :label => 'Set as default (that is, the first presentation displayed to a user). If no default, all questionnaires will be displayed'
         if defined?(Ckeditor)
-          f.input :description, :as => :ckeditor, :input_html => { :height => 100, :toolbar => 'Basic' }
+          f.input :description, :as => :ckeditor, :input_html => { :height => 100}
         else
           f.input :description, :input_html => { :rows => 3}
         end

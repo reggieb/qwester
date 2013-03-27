@@ -23,9 +23,9 @@ module Qwester
 
       para 'R2 = "a1 and not a2"'
 
-      para 'R3 = "2 in a1 a2 a3"'
+      para 'R3 = "sum(:id) == 7"'
 
-      para 'R4 = "(2 in a1 a2 a3) and (1 in a4 a5)"'
+      para 'R4 = "(2 in a1 a2 a3) and (average(:id) == 3)"'
 
       table(:class => 'small') do
         tr do
@@ -39,24 +39,26 @@ module Qwester
           th "[a1, a2]"
           th "true"
           th "false"
-          th "true"
+          th "false"
           th "false"
         end
         tr do
           th "[a3, a4]"
           th "true"
           th "false"
-          th "false"
+          th "true"
           th "false"
         end
         tr do
           th "[a1, a3, a5]"
           th "false"
           th "true"
-          th "true"
+          th "false"
           th "true"
         end      
       end
+      
+      para link_to('Rule engine documentation', 'https://github.com/reggieb/array_logic', :target => '_blank')
 
     end
     
