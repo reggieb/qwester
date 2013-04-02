@@ -183,6 +183,32 @@ flow that goes from one to two and then back to one, unless you reset or
 otherwise manipulate session[:presentations]. Instead you should clone 'one'
 as a new presentation e.g. 'three', and then go from one to two to three.
 
+== Answer weighting
+
+Answers have a weighting field (float) to give selected answers more weight 
+when comparing answers. You can also define an alias for this field, to give
+it a name that is more appropriate to your application.
+
+For example, you want to use qwester to create a multiple choice test, and each
+answer needs to be assigned a 'score'. First you will need to assign :score as
+the weighting alias. In an initializer add this:
+
+  Qwester::Answer.weighting_alias = :score
+
+This will add a 'score' instance method to Answers, that will return the 
+weighting for that answer.
+
+Then apply a score/weighting to each correct answer in the database.
+
+You can then set up a rule to work with the score method. For example:
+
+  rule_set.rule = 'sum(:score) >= 10'
+
+See array_logic[http://github.com/reggieb/array_logic] for a list of functions
+available.
+
+The default value of weighting is zero.
+
 == Dummy
 
 A test app is present within this engine, and provides an example of how

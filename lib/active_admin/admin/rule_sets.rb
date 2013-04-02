@@ -165,52 +165,58 @@ EOF
         para qwester_rule_set.rule
       end
       
-      if qwester_rule_set.matching_answer_sets.present?
-        div do
-          h3 'Sample matching answer sets'
-          if qwester_rule_set.matching_answer_sets.length
-            para "There are at least #{qwester_rule_set.matching_answer_sets.length} combinations of answers that would pass this test."
-          end
-          para 'The following combinations of answers would pass'
-          qwester_rule_set.matching_answer_sets.each do |answer_set|
-            ul :style => 'border:#CCCCCC 1px solid;padding:5px;list-style:none;' do
-              answer_set.each do |answer_id|
-                next unless Answer.exists?(answer_id)
-                answer = Answer.find(answer_id)
-                question_summary = [answer.value, answer.question.title].join(' : ')
-                li "(a#{answer_id}) #{question_summary}"
+      begin
+        if qwester_rule_set.matching_answer_sets.present?
+          div do
+            h3 'Sample matching answer sets'
+            if qwester_rule_set.matching_answer_sets.length
+              para "There are at least #{qwester_rule_set.matching_answer_sets.length} combinations of answers that would pass this test."
+            end
+            para 'The following combinations of answers would pass'
+            qwester_rule_set.matching_answer_sets.each do |answer_set|
+              ul :style => 'border:#CCCCCC 1px solid;padding:5px;list-style:none;' do
+                answer_set.each do |answer_id|
+                  next unless Answer.exists?(answer_id)
+                  answer = Answer.find(answer_id)
+                  question_summary = [answer.value, answer.question.title].join(' : ')
+                  li "(a#{answer_id}) #{question_summary}"
+                end
               end
             end
           end
+        else
+          div do
+            h3 'Matching answer sets'
+            para 'Answers will pass unless they contain a blocking answer set'
+          end
         end
-      else
-        div do
-          h3 'Matching answer sets'
-          para 'Answers will pass unless they contain a blocking answer set'
-        end
-      end
-      
-      if qwester_rule_set.blocking_answer_sets.present?
-        div do
-          h3 'Sample blocking answer sets'
-          para 'The following combinations of answers would not pass'
-          qwester_rule_set.blocking_answer_sets.each do |answer_set|
-             ul :style => 'border:#CCCCCC 1px solid;padding:5px;list-style:none;' do
-              answer_set.each do |answer_id|
-                next unless Answer.exists?(answer_id)
-                answer = Answer.find(answer_id)
-                question_summary = [answer.value, answer.question.title].join(' : ')
-                li "(a#{answer_id}) #{question_summary}"
+
+        if qwester_rule_set.blocking_answer_sets.present?
+          div do
+            h3 'Sample blocking answer sets'
+            para 'The following combinations of answers would not pass'
+            qwester_rule_set.blocking_answer_sets.each do |answer_set|
+              ul :style => 'border:#CCCCCC 1px solid;padding:5px;list-style:none;' do
+                answer_set.each do |answer_id|
+                  next unless Answer.exists?(answer_id)
+                  answer = Answer.find(answer_id)
+                  question_summary = [answer.value, answer.question.title].join(' : ')
+                  li "(a#{answer_id}) #{question_summary}"
+                end
               end
             end
           end
+        else
+          div do
+            h3 'Blocking answer sets'
+            para 'Answers will only pass if they contain a matching answer set'
+          end
         end
-      else
-        div do
-          h3 'Blocking answer sets'
-          para 'Answers will only pass if they contain a matching answer set'
-        end
+      rescue ArrayLogic::UnableToDetermineCombinationsError => e
+        h3 'Sample combinations'
+        para e.message
       end
+        
       
     end  
 

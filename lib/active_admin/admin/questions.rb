@@ -55,7 +55,7 @@ module Qwester
         f.has_many :answers do |answer_form|
           answer_form.input :value
           answer_form.input :position
-          answer_form.input :cope_index
+          answer_form.input :weighting, :label => Answer.weighting_alias_name.humanize
         end
       end
 

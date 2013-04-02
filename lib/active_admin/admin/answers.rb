@@ -16,6 +16,7 @@ module Qwester
         link_to(answer.question.title, edit_admin_qwester_question_path(answer.question)) if answer.question
       end
       column :position
+      column Answer.weighting_alias_name.humanize, :weighting
       default_actions
     end
     

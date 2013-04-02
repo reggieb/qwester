@@ -1,6 +1,6 @@
 module Qwester
   class Answer < ActiveRecord::Base
-    attr_accessible :value, :question_id, :position, :cope_index
+    attr_accessible :value, :question_id, :position, :weighting
 
     DEFAULT_VALUE = 'Not applicable'
     STANDARD_VALUES = ['Yes', 'No', DEFAULT_VALUE]
@@ -35,6 +35,31 @@ module Qwester
 
     def self.rule_label_prefix
       @rule_label_prefix ||= 'a'
+    end
+    
+    def self.weighting_alias
+      @weighting_alias
+    end
+    
+    def self.weighting_alias=(name)
+      if name
+        @weighting_alias = name
+        define_method(name.to_sym) {send(:weighting)}
+      else
+        remove_weighting_alias
+      end
+    end
+    
+    def self.weighting_alias_name
+      name = weighting_alias || :weighting
+      name.to_s
+    end
+    
+    def self.remove_weighting_alias
+      if weighting_alias
+        remove_method weighting_alias.to_sym
+        @weighting_alias = nil
+      end
     end
 
     def rule_label

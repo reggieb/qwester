@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    qwester (0.1.2)
+    qwester (0.1.4)
       acts_as_list
-      array_logic (~> 0.2)
+      array_logic (~> 0.2.4)
       paperclip (~> 3.0)
       rails (~> 3.2)
 
@@ -54,7 +54,7 @@ GEM
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (3.0.2)
-    array_logic (0.2.1)
+    array_logic (0.2.4)
     bcrypt-ruby (3.0.1)
     bourbon (3.0.1)
       sass (>= 3.2.0)
