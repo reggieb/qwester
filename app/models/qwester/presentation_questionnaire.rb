@@ -4,5 +4,7 @@ module Qwester
     
     belongs_to :presentation
     belongs_to :questionnaire
+    
+    acts_as_list :scope => :presentation
   end
 end

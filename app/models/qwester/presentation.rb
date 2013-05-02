@@ -2,11 +2,15 @@ module Qwester
   class Presentation < ActiveRecord::Base
     attr_accessible :description, :name, :title, :questionnaire_ids, :default
     
-    has_many :presentation_questionnaires
+    has_many(
+      :presentation_questionnaires,
+      :order => 'position'
+    )
     
     has_many(
       :questionnaires,
-      :through => :presentation_questionnaires
+      :through => :presentation_questionnaires,
+      :order => 'position'
     )
     accepts_nested_attributes_for :questionnaires
     
@@ -39,6 +43,31 @@ module Qwester
     
     def update_title_from_name
       self.title = self.name.humanize unless self.title.present?
+    end
+    
+    def method_missing(symbol, *args, &block)
+      if acts_as_list_method?(symbol)
+        pass_acts_as_list_method_to(presentation_questionnaires, symbol, args.first)
+      else
+        super
+      end
+    end
+
+  #  Allows acts_as_list methods to be used within the questionnaire. 
+  #  
+  #  Usage: 
+  #  
+  #       questionnaire.move_to_top(question)
+  #       questionnaire.last?(question)
+  # 
+    def pass_acts_as_list_method_to(presentation_questionnaires, symbol, questionnaire)
+      raise "A Questionnaire is needed to identify the PresentationQuesti" unless questionnaire.kind_of? Questionnaire
+      presentation_questionnaire = presentation_questionnaires.where(:questionnaire_id => questionnaire.id).first
+      presentation_questionnaire.send(symbol) if presentation_questionnaire
+    end
+
+    def acts_as_list_method?(symbol)
+      ActiveRecord::Acts::List::InstanceMethods.instance_methods.include?(symbol.to_sym)
     end
     
   end
