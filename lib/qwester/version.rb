@@ -1,9 +1,11 @@
 module Qwester
-  VERSION = "0.2.0"
+  VERSION = "0.2.1"
 end
 
 # History
 # =======
+# 
+# 0.2.1 - Allows questionnaires to be positioned within a presentation
 # 
 # 0.2.0 - Adds weighting to answers
 #   Weighting can be used to give some answers greater weight in comparisons.
