@@ -46,7 +46,7 @@ module Qwester
 
     private
     def method_missing(symbol, *args, &block)
-      if acts_as_list_method?(symbol)
+      if symbol.to_sym == :position || acts_as_list_method?(symbol)
         pass_acts_as_list_method_to_questionnaires_question(symbol, args.first) 
       else 
         super

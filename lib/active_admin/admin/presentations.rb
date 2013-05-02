@@ -28,6 +28,15 @@ module Qwester
         div(:style => 'display:inline-block;margin-right:20px;') do
           para image_tag(questionnaire.button_image.url(:thumbnail))
           para questionnaire.title
+          move_up_link = "&nbsp;"
+          move_down_link = "&nbsp;"
+          unless qwester_presentation.first?(questionnaire)
+            move_up_link =  link_to('<', move_up_admin_qwester_presentation_path(qwester_presentation, :questionnaire_id => questionnaire.id))
+          end
+          unless qwester_presentation.last?(questionnaire)
+            move_down_link =  link_to('>', move_down_admin_qwester_presentation_path(qwester_presentation, :questionnaire_id => questionnaire.id))
+          end
+          para [move_up_link, 'move', move_down_link].join(' ').html_safe
         end
       end
       para "Default: Will be inital presentation of quesitonnaires" if qwester_presentation.default?
@@ -46,6 +55,20 @@ module Qwester
         f.input :questionnaires, :as => :check_boxes, :collection => Questionnaire.all
       end
       f.buttons
+    end
+    
+    member_action :move_up do
+      presentation = Presentation.find(params[:id])
+      questionnaire = Questionnaire.find(params[:questionnaire_id])
+      presentation.move_higher(questionnaire)
+      redirect_to admin_qwester_presentation_path(presentation)      
+    end
+    
+    member_action :move_down do
+      presentation = Presentation.find(params[:id])
+      questionnaire = Questionnaire.find(params[:questionnaire_id])
+      presentation.move_lower(questionnaire)
+      redirect_to admin_qwester_presentation_path(presentation)     
     end
     
   end

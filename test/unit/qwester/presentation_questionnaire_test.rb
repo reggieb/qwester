@@ -27,5 +27,9 @@ module Qwester
       assert_equal(@default_order.reverse, @presentation.questionnaires)
     end
     
+    def test_position
+      assert_equal(@presentation_questionnaire.position, @presentation.position(@presentation_questionnaire.questionnaire))
+    end
+    
   end
 end

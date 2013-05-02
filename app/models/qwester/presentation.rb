@@ -10,6 +10,7 @@ module Qwester
     has_many(
       :questionnaires,
       :through => :presentation_questionnaires,
+      :uniq => true,
       :order => 'position'
     )
     accepts_nested_attributes_for :questionnaires
@@ -46,7 +47,7 @@ module Qwester
     end
     
     def method_missing(symbol, *args, &block)
-      if acts_as_list_method?(symbol)
+      if symbol.to_sym == :position || acts_as_list_method?(symbol)
         pass_acts_as_list_method_to(presentation_questionnaires, symbol, args.first)
       else
         super
@@ -67,7 +68,8 @@ module Qwester
     end
 
     def acts_as_list_method?(symbol)
-      ActiveRecord::Acts::List::InstanceMethods.instance_methods.include?(symbol.to_sym)
+      methods = ActiveRecord::Acts::List::InstanceMethods.instance_methods + ActiveRecord::Acts::List::InstanceMethods.private_instance_methods
+      methods.include?(symbol.to_sym)
     end
     
   end
