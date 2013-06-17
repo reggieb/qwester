@@ -17,19 +17,11 @@ gemspec
 # gem 'debugger'
 
 
-# TODO - Disable the lines below for production. At the moment, I can't get 
-# activeadmin to work in the test environment without the line below. 
-# Grouping in this file doesn't seem to work.
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-script'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', '0.10.2', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
-  
-  gem 'jquery-ui-rails'
-  gem 'jquery-rails'
-  
-  gem 'activeadmin'
-
+#####################################################
+# At the moment, I can't get activeadmin and jquery (which it needs) to work in
+# the test/dummy environment without the gem declarations below. So if you want
+# to run the test/dummy app, uncomment these two declarations:
+#
+#  gem 'jquery-rails'
+#  gem 'activeadmin'
+#####################################################

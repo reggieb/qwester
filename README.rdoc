@@ -215,6 +215,10 @@ The default value of weighting is zero.
 A test app is present within this engine, and provides an example of how
 Qwester can be used within a Rails app. See test/dummy.
 
+However, look at the notes in Gemfile. You may need to uncomment two gem
+declarations in the gemfile, before jquery and active_admin work correctly in
+the test/dummy environment.
+
 == Integration with ActiveAdmin
 
 Qwester contains a set of ActiveAdmin register files, that allow Qwester
