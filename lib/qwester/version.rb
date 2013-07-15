@@ -1,9 +1,13 @@
 module Qwester
-  VERSION = "0.2.1"
+  VERSION = "0.2.2"
 end
 
 # History
 # =======
+#
+# 0.2.2 - Removes require statements not needed in production
+#   Some gems needed to be required to run the dummy app, but these may have
+#   caused some javascript and/or asset pipeline errors in production apps.
 # 
 # 0.2.1 - Allows questionnaires to be positioned within a presentation
 # 
