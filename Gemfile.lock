@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    qwester (0.2.1)
+    qwester (0.2.2)
       acts_as_list
       array_logic (~> 0.2.4)
       paperclip (~> 3.0)
@@ -64,6 +64,10 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.3)
     devise (2.2.0)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -105,9 +109,8 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     orm_adapter (0.4.0)
-    paperclip (3.4.1)
+    paperclip (3.5.0)
       activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
@@ -169,6 +172,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  coffee-script
   dibber
   inherited_resources
   jquery-rails

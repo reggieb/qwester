@@ -1,21 +1,21 @@
 <h1>Questionnaires</h1>
 <div>
 <% @questionnaires.each do |questionnaire| %>
-
-  <%= link_to(
-        image_tag(questionnaire.button_image.url(:link)), 
-        questionnaire_path(questionnaire),
-        :class => 'image_link'
-      ) 
-  %>
-  <br>
-  <%= link_to(
-        questionnaire.title, 
-        questionnaire_path(questionnaire),
-        :class => 'text_link'
-      ) 
-  %>
-
+  <div class="questionnaire">
+    <%= link_to(
+          image_tag(questionnaire.button_image.url(:link)),
+          questionnaire_path(questionnaire),
+          :class => 'image_link'
+        )
+    %>
+    <br>
+    <%= link_to(
+          questionnaire.title,
+          questionnaire_path(questionnaire),
+          :class => 'text_link'
+        )
+    %>
+  </div>
 <% end %>
 </div>
 
@@ -35,5 +35,5 @@
   content_tag(
     'p', 
     link_to('Clear answers and start again', reset_questionnaires_path)
-  ) if @qwester_rule_sets.present? 
+  ) if @qwester_answer_store.answers.present?
 %>

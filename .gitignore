@@ -7,4 +7,5 @@ test/dummy/tmp/
 test/dummy/.sass-cache
 test/dummy/public/system/*
 .rvmrc
+.ruby-*
 *.gem
