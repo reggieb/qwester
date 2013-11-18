@@ -35,5 +35,5 @@
   content_tag(
     'p', 
     link_to('Clear answers and start again', reset_questionnaires_path)
-  ) if @qwester_answer_store.answers.present?
+  ) if @qwester_answer_store and @qwester_answer_store.answers.present?
 %>
