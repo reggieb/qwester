@@ -1,9 +1,11 @@
 module Qwester
-  VERSION = "0.2.2"
+  VERSION = "0.3.0"
 end
 
 # History
 # =======
+#
+# 0.3.0 - Allows qwester to be hosted in a rails 4 app
 #
 # 0.2.2 - Removes require statements not needed in production
 #   Some gems needed to be required to run the dummy app, but these may have
