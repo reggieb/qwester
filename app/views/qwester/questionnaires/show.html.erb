@@ -5,7 +5,7 @@
 <% else %> 
 <h2>Questions</h2>
 <% end %>
-
+<%= render 'errors' %>
 <%= form_for(@questionnaire, :url => questionnaire_path(@questionnaire)) do |form| %>
 <ul>
 

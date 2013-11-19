@@ -5,8 +5,11 @@ module ActionController
     def update_qwester_answer_store
       if params_includes_answers?
         get_qwester_answer_store(true)
-        add_answers_to_qwester_answer_store
-        add_questionnaire_to_qwester_answer_store
+        ActiveRecord::Base.transaction do
+          add_answers_to_qwester_answer_store
+          add_questionnaire_to_qwester_answer_store
+          ensure_complete_all_questionnaires_completed
+        end
       end
     end
 
@@ -94,6 +97,13 @@ module ActionController
 
     def add_questionnaire_to_qwester_answer_store
       @qwester_answer_store.questionnaires << @questionnaire
+    end
+
+    def ensure_complete_all_questionnaires_completed
+      if @questionnaire.must_complete? and !@qwester_answer_store.completed_questionnaires.include?(@questionnaire)
+        @questionnaire.errors.add(:base, "All questions must be answered in this questionnaire")
+      end
+      raise ActiveRecord::Rollback unless @questionnaire.errors.empty?
     end
   end
 end

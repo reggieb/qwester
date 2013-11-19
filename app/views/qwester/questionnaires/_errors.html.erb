@@ -1,0 +1,9 @@
+<% if @questionnaire and @questionnaire.errors.present? %>
+<div class="error">
+  <h2>Error detected</h2>
+  <ul>
+  <% @questionnaire.errors.full_messages.each do |message|  %>
+    <%= content_tag('li', message, class: 'error_message') %>
+  <% end %>
+</div>
+<% end %>

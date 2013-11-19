@@ -92,6 +92,34 @@ module Qwester
       assert_equal(nil, session[Qwester.session_key])
       assert_response :redirect
     end
+
+    def test_update_with_must_complete_and_all_questions_answered
+      @questionnaire.update_attribute :must_complete, true
+      test_update
+    end
+
+    def test_update_with_must_complete_and_no_questions_answered
+      @questionnaire.update_attribute :must_complete, true
+      test_update_with_no_answers
+    end
+
+    def test_update_with_must_complete_and_some_answers_completed
+      @questionnaire.update_attribute :must_complete, true
+      @questionnaire.questions << Question.find(2)
+      put(
+        :update,
+        :id => @questionnaire.id,
+        :question_id => {
+          @question.id.to_s => {
+            :answer_ids => [@answer.id.to_s]
+          }
+        },
+        :use_route => :qwester
+      )
+      assert_response :success
+      assert assigns('questionnaire').errors.present?, "@questionnaire should include errors"
+      assert !assigns('qwester_answer_store').questionnaires.include?(@questionnaire), "@questionnaire should not be stored"
+    end
     
     def test_answer_store_created_when_questionnaire_first_submitted
       assert_difference 'AnswerStore.count' do

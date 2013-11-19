@@ -12,7 +12,11 @@ module Qwester
     def update
       @questionnaire = Qwester::Questionnaire.find(params[:id])
       update_qwester_answer_store
-      redirect_to questionnaires_path
+      if @questionnaire.errors.empty?
+        redirect_to questionnaires_path
+      else
+        render :show
+      end
     end
 
     def reset

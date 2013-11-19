@@ -15,12 +15,21 @@ module Qwester
     end
 
     def answer_checked(answer)
-      answer_store_answers.include? answer
+      answer_store_answers.include?(answer) || params_includes_answer(answer)
     end
 
     def answer_store_answers
       answer_store = get_qwester_answer_store
       answer_store ? answer_store.answers : []
+    end
+
+    # params should be of form: "question_id"=>{"1"=>{"answer_ids"=>["1"]}}
+    def params_includes_answer(answer)
+      question_ids = params[:question_id]
+      return nil unless question_ids.kind_of? Hash
+      answers = question_ids[answer.question_id.to_s]
+      return nil unless answers.kind_of? Hash
+      answers.values.flatten.include?(answer.id.to_s)
     end
   end
 end
