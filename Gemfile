@@ -17,13 +17,15 @@ gemspec
 # gem 'debugger'
 
 
-#####################################################
-# I can't get activeadmin and jquery (which it needs) to work in
-# the test/dummy environment without the gem declarations below. 
-#
 
+# I can't get activeadmin and jquery (which it needs) to work in
+# the test/dummy environment without these gem declarations.
 gem 'jquery-rails'
 gem 'activeadmin'
 gem 'coffee-script'
 
-#####################################################
+# Force development mode to use compatible versions of rails and active admin
+# These settings should not get into the gem. When in use compatibility between
+# rails and active admin should be managed from within the host app.
+gem 'rails', '3.2.14'
+gem 'activeadmin', '0.5.1'
