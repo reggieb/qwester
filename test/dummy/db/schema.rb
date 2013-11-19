@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502082731) do
+ActiveRecord::Schema.define(:version => 20131119142050) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20130502082731) do
     t.string   "button_image_content_type"
     t.integer  "button_image_file_size"
     t.datetime "button_image_updated_at"
+    t.boolean  "must_complete"
   end
 
   create_table "qwester_questionnaires_questions", :force => true do |t|

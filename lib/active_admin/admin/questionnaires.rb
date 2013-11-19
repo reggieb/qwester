@@ -16,6 +16,9 @@ module Qwester
       column :questions do |questionnaire|
         questionnaire.questions.count
       end
+      column :must_complete do |questionnaire|
+        questionnaire.must_complete? ? 'Yes' : 'No'
+      end
       default_actions
     end
 
@@ -27,6 +30,7 @@ module Qwester
         else
           f.input :description, :input_html => { :rows => 3}
         end
+        f.input :must_complete
         f.input :button_image, :as => :file, :hint => f.template.image_tag(f.object.button_image.url(:link))
         f.input :questions, :as => :check_boxes, :collection => Question.all
       end
@@ -37,12 +41,12 @@ module Qwester
       def permitted_params
         params.permit(
           qwester_questionnaire: [
-            :title, :description, :button_image,
+            :title, :description, :button_image, :must_complete,
             {question_ids: []}
           ]
-        )
+        ) 
       end
-    end
+    end unless Qwester.rails_three?
 
     show do
       div do
@@ -55,6 +59,7 @@ module Qwester
 
       div do
         h3 'Questions'
+        para("#{qwester_questionnaire.must_complete? ? 'A' : 'Not a'}ll must be completed")
         ul :id => 'question_list'
         qwester_questionnaire.questions.each do |question|
           li do 

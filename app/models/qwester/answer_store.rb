@@ -1,6 +1,6 @@
 module Qwester
   class AnswerStore < ActiveRecord::Base
-    if Qwester.rails_version == '3'
+    if Qwester.rails_three?
       attr_accessible 
     end
 

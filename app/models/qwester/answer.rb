@@ -1,6 +1,6 @@
 module Qwester
   class Answer < ActiveRecord::Base
-    if Qwester.rails_version == '3'
+    if Qwester.rails_three?
       attr_accessible :value, :question_id, :position, :weighting
     end
 

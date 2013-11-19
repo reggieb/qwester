@@ -1,7 +1,7 @@
 require 'array_logic'
 module Qwester
   class RuleSet < ActiveRecord::Base
-    if Qwester.rails_version == '3'
+    if Qwester.rails_three?
       attr_accessible :title, :description, :answers, :url, :rule, :answer_ids, :link_text, :warning_id, :presentation
     end
 

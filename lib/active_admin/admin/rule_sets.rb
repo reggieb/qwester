@@ -149,7 +149,7 @@ EOF
           ]
         )
       end
-    end
+    end unless Qwester.rails_three?
     
     show do
       div do

@@ -66,7 +66,7 @@ module Qwester
           ]
         )
       end
-    end
+    end unless Qwester.rails_three?
     
     member_action :move_up do
       presentation = Presentation.find(params[:id])

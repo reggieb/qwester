@@ -1,6 +1,6 @@
 module Qwester
   class Question < ActiveRecord::Base
-    if Qwester.rails_version == '3'
+    if Qwester.rails_three?
       attr_accessible :title, :description, :ref, :answers_attributes, :multi_answer
     end
 

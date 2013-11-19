@@ -69,6 +69,10 @@ module Qwester
         @qwester_question.build_standard_answers
       end
 
+    end
+
+    controller do
+
       def permitted_params
         params.permit(
           qwester_question: [
@@ -78,7 +82,7 @@ module Qwester
         )
       end
 
-    end
+    end unless Qwester.rails_three?
 
   end if defined?(ActiveAdmin)
 

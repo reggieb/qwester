@@ -1,6 +1,6 @@
 module Qwester
   class PresentationQuestionnaire < ActiveRecord::Base
-    if Qwester.rails_version == '3'
+    if Qwester.rails_three?
       attr_accessible :presentation_id, :questionnaire_id
     end
     
