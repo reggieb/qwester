@@ -5,7 +5,7 @@ PATH
       acts_as_list
       array_logic (~> 0.2.4)
       paperclip (~> 3.0)
-      rails (~> 3.2)
+      rails (>= 3.2)
 
 GEM
   remote: http://rubygems.org/
@@ -49,7 +49,7 @@ GEM
     activesupport (3.2.11)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    acts_as_list (0.2.0)
+    acts_as_list (0.3.0)
       activerecord (>= 3.0)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
@@ -62,7 +62,7 @@ GEM
     builder (3.0.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.1)
+    cocaine (0.5.3)
       climate_control (>= 0.0.3, < 1.0)
     coffee-script (2.2.0)
       coffee-script-source
@@ -109,10 +109,10 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     orm_adapter (0.4.0)
-    paperclip (3.5.0)
+    paperclip (3.5.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (~> 0.5.0)
+      cocaine (~> 0.5.3)
       mime-types
     polyamorous (0.5.0)
       activerecord (~> 3.0)

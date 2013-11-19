@@ -54,7 +54,18 @@ module Qwester
         end
         f.input :questionnaires, :as => :check_boxes, :collection => Questionnaire.all
       end
-      f.buttons
+      f.actions
+    end
+
+    controller do
+      def permitted_params
+        params.permit(
+          qwester_presentation: [
+            :name, :title, :default, :description,
+            {questionnaire_ids: []}
+          ]
+        )
+      end
     end
     
     member_action :move_up do

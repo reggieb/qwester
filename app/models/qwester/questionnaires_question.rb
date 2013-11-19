@@ -1,6 +1,8 @@
 module Qwester
   class QuestionnairesQuestion < ActiveRecord::Base
-    attr_accessible :position
+    if Qwester.rails_version == '3'
+      attr_accessible :position
+    end
 
     belongs_to :questionnaire
     belongs_to :question

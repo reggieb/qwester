@@ -1,5 +1,8 @@
 module Qwester
   class AnswerStore < ActiveRecord::Base
+    if Qwester.rails_version == '3'
+      attr_accessible 
+    end
 
     has_and_belongs_to_many(
       :answers,

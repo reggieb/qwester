@@ -1,6 +1,8 @@
 module Qwester
   class Presentation < ActiveRecord::Base
-    attr_accessible :description, :name, :title, :questionnaire_ids, :default
+    if Qwester.rails_version == '3'
+      attr_accessible :description, :name, :title, :questionnaire_ids, :default
+    end
     
     has_many(
       :presentation_questionnaires,
@@ -21,7 +23,7 @@ module Qwester
     validates(
       :name, 
       :format => { 
-        :with => /^\w+$/, 
+        :with => /\A\w+\z/,
         :message => "must comprise letters or numbers with underscores separating words"
       },
       :presence => true,

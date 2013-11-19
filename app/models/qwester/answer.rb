@@ -1,6 +1,9 @@
 module Qwester
   class Answer < ActiveRecord::Base
-    attr_accessible :value, :question_id, :position, :weighting
+    if Qwester.rails_version == '3'
+      attr_accessible :value, :question_id, :position, :weighting
+    end
+
 
     DEFAULT_VALUE = 'Not applicable'
     STANDARD_VALUES = ['Yes', 'No', DEFAULT_VALUE]
