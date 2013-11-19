@@ -31,5 +31,9 @@ module Qwester
   def self.session_key=(key)
     @session_key = key
   end
+
+  def self.rails_version
+    @rails_version ||= Rails.version.split('.').first if defined? Rails
+  end
   
 end

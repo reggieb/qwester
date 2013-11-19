@@ -6,7 +6,7 @@ module Qwester
     menu_label = "Qwester #{menu_label}" unless Qwester.active_admin_menu
     menu :parent => Qwester.active_admin_menu, :label => menu_label
 
-    actions :all, :except => [:edit]
+    actions :all, :except => [:edit, :new]
     config.batch_actions = false
     
     filter :question
@@ -58,6 +58,7 @@ module Qwester
       answer.destroy
       redirect_to admin_qwester_question_path(answer.question) 
     end
+
 
   end if defined?(ActiveAdmin)
 

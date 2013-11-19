@@ -1,7 +1,9 @@
 require 'array_logic'
 module Qwester
   class RuleSet < ActiveRecord::Base
-    attr_accessible :title, :description, :answers, :url, :rule, :answer_ids, :link_text, :warning_id, :presentation
+    if Qwester.rails_version == '3'
+      attr_accessible :title, :description, :answers, :url, :rule, :answer_ids, :link_text, :warning_id, :presentation
+    end
 
     before_save :keep_answers_in_step_with_rule
 

@@ -18,12 +18,12 @@ gemspec
 
 
 #####################################################
-# At the moment, I can't get activeadmin and jquery (which it needs) to work in
-# the test/dummy environment without the gem declarations below. So if you want
-# to run the test/dummy app, uncomment this group:
+# I can't get activeadmin and jquery (which it needs) to work in
+# the test/dummy environment without the gem declarations below. 
 #
-#  gem 'jquery-rails'
-#  gem 'activeadmin'
-#  gem 'coffee-script'
+
+gem 'jquery-rails'
+gem 'activeadmin'
+gem 'coffee-script'
 
 #####################################################

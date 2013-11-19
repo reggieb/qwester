@@ -137,7 +137,18 @@ EOF
         
       end
       
-      f.buttons
+      f.actions
+    end
+
+    controller do
+      def permitted_params
+        params.permit(
+          qwester_rule_set: [
+            :title, :description, :url, :link_text, :presentation, :rule,
+            {answer_ids: []}
+          ]
+        )
+      end
     end
     
     show do

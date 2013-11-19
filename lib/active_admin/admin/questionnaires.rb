@@ -30,7 +30,18 @@ module Qwester
         f.input :button_image, :as => :file, :hint => f.template.image_tag(f.object.button_image.url(:link))
         f.input :questions, :as => :check_boxes, :collection => Question.all
       end
-      f.buttons
+      f.actions
+    end
+
+    controller do
+      def permitted_params
+        params.permit(
+          qwester_questionnaire: [
+            :title, :description, :button_image,
+            {question_ids: []}
+          ]
+        )
+      end
     end
 
     show do

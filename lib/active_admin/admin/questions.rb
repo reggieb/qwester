@@ -30,11 +30,11 @@ module Qwester
 
       table :class => 'sortable_list' do
         tr do
-          th 'Value'
+          th "Value (#{Answer.weighting_alias_name.humanize})"
         end
         qwester_question.answers.each do |answer|
           tr do
-            td answer.value
+            td "#{answer.value} (#{answer.weighting})"
             td(answer.first? ? "&nbsp;".html_safe : link_to('Up', move_up_admin_qwester_answer_path(answer)))
             td(answer.last? ? "&nbsp;".html_safe : link_to('Down', move_down_admin_qwester_answer_path(answer)))
             td link_to('Delete', remove_admin_qwester_answer_path(answer), :confirm => "Are you sure you want to delete the answer '#{answer.value}'?")
@@ -59,7 +59,7 @@ module Qwester
         end
       end
 
-      f.buttons
+      f.actions
     end
     
     controller do
@@ -67,6 +67,15 @@ module Qwester
       def new
         @qwester_question = Question.new
         @qwester_question.build_standard_answers
+      end
+
+      def permitted_params
+        params.permit(
+          qwester_question: [
+            :ref, :title, :description, :multi_answer,
+            {answers_attributes: [:value, :position, :weighting]}
+          ]
+        )
       end
 
     end

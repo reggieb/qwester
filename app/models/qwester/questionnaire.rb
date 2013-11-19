@@ -1,6 +1,8 @@
 module Qwester
   class Questionnaire < ActiveRecord::Base
-    attr_accessible :title, :description, :button_image, :question_ids
+    if Qwester.rails_version == '3'
+      attr_accessible :title, :description, :button_image, :question_ids
+    end
 
     has_many(
       :questionnaires_questions, 
