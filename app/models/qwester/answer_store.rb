@@ -6,11 +6,13 @@ module Qwester
 
     has_and_belongs_to_many(
       :answers,
+      :class_name => 'Qwester::Answer',
       :join_table => :qwester_answer_stores_answers,
       :uniq => true
     )
     has_and_belongs_to_many(
-      :questionnaires, 
+      :questionnaires,
+      :class_name => 'Qwester::Questionnaire',
       :join_table => :qwester_answer_stores_questionnaires,
       :uniq => true
     )
@@ -38,7 +40,15 @@ module Qwester
       make_copy
     end
 
+    def completed_questionnaires
+      questionnaires.select{|q| (q.questions.collect(&:id) - completed_question_ids).empty?}
+    end
+
     private
+
+    def completed_question_ids
+      answers.collect(&:question_id)
+    end
 
     def generate_session_id
       if !self.session_id or self.session_id.empty?

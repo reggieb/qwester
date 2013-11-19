@@ -11,6 +11,7 @@ module Qwester
 
     has_many(
       :questions,
+      :class_name => 'Qwester::Question',
       :uniq => true,
       :through => :questionnaires_questions,
       :order => 'position'
@@ -18,6 +19,7 @@ module Qwester
 
     has_many(
       :answers,
+      :class_name => 'Qwester::Answer',
       :through => :questions,
       :uniq => true
     )

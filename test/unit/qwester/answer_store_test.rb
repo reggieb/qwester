@@ -130,6 +130,26 @@ module Qwester
       test_preserve # to populate database with extra answer_stores
       assert_equal(AnswerStore.all.collect(&:session_id).sort, @answer_store.send(:get_session_ids).sort)
     end
+
+    def test_completed_questionnaires
+      assert_equal [], @answer_store.completed_questionnaires
+      @answer_store.answers << @questionnaire.questions.first.answers.first
+      @answer_store.questionnaires << @questionnaire
+      assert_equal [@questionnaire], @answer_store.completed_questionnaires
+    end
+
+    def test_completed_questionnaires_with_second_question
+      first_question = @questionnaire.questions.first
+      second_question = Question.find(2)
+      second_question.build_standard_answers
+      second_question.save
+      @questionnaire.questions = [first_question, second_question]
+      @answer_store.answers << first_question.answers.first
+      @answer_store.questionnaires << @questionnaire
+      assert_equal [], @answer_store.completed_questionnaires
+      @answer_store.answers << second_question.answers.first
+      assert_equal [@questionnaire], @answer_store.completed_questionnaires
+    end
     
     private
     def assert_on_destroy_unpreserved_join_entries_removed_for(table)
