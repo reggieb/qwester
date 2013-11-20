@@ -1,9 +1,13 @@
 module Qwester
-  VERSION = "0.3.0"
+  VERSION = "0.3.1"
 end
 
 # History
 # =======
+#
+# 0.3.1 - Adds facility to mark as questionnaire as 'must complete'
+#   When set, all questions must be answered before a questionnaire can be
+#   successfully submitted.
 #
 # 0.3.0 - Allows qwester to be hosted in a rails 4 app
 #
