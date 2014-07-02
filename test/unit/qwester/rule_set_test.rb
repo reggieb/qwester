@@ -98,7 +98,7 @@ module Qwester
 
     def test_answers_shrink_when_answer_removed_from_rule
       test_answers_populated_by_rules
-      @rule_set.rule = 'a1'
+      @rule_set.reload.rule = 'a1'
       @rule_set.save
       assert_equal([@answer], @rule_set.answers)
     end
@@ -125,6 +125,13 @@ module Qwester
       @rule_set.presentation = 'something'
       @rule_set.url = nil
       assert(@rule_set.valid?, "RuleSet should be valid")
+    end
+
+    def test_rule_set_invalid_if_answer_in_rule_does_not_exist
+      nonexistent_answer_id = Qwester::Answer.select('id').max.id + 1
+      @rule_set.rule = "a#{nonexistent_answer_id}"
+      assert @rule_set.invalid?, "Rules set should be invalid"
+      assert @rule_set.errors[:rule], 'Error should be on rule'
     end
 
     private

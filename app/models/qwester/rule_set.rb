@@ -23,6 +23,7 @@ module Qwester
     )
 
     validate :check_rule_is_valid
+    validate :check_answers_exist_with_ids_matching_those_in_rule
 
     validates :title, :presence => true
     validates :url, :presence => {:unless => :presentation?}
@@ -67,17 +68,32 @@ module Qwester
 
     def keep_answers_in_step_with_rule
       generate_default_rule
-      self.answers = get_logic.object_ids_used.collect{|id| Answer.find(id)}
+      self.answers = get_logic.object_ids_used.collect{|id| Answer.find(id)} # need to use get_logic rather than caching logic
     end
 
     def check_rule_is_valid
-      if rule.present?
+      if rule?
         begin
         logic.send :check_rule
         rescue => e
           errors.add(:rule, "error: #{e.message}")
         end
       end
+    end
+
+    def answer_ids_in_rule
+      rule? ? logic.object_ids_used : []
+    end
+
+    def answers_ids_in_database_also_found_in_rule
+      Qwester::Answer.where(id: answer_ids_in_rule).pluck(:id)
+    end
+
+    def check_answers_exist_with_ids_matching_those_in_rule
+      mismatch = answer_ids_in_rule - answers_ids_in_database_also_found_in_rule
+      return if mismatch.empty?
+      mismatch_report = mismatch.collect{|a| "a#{a}"}.join(", ")
+      errors.add(:rule, "Answer labels [#{mismatch_report}] do not have corresponding answers in database")
     end
   end
 end
