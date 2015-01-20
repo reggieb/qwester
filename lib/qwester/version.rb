@@ -1,9 +1,12 @@
 module Qwester
-  VERSION = "0.3.2"
+  VERSION = "0.3.3"
 end
 
 # History
 # =======
+# 0.3.3 - Applies labels to checkbox and radio button texts within standard
+#   questionnaire forms.
+# 
 # 0.3.2 - Fixes issues where rule_set rule references answers that do not exist.
 #
 # 0.3.1 - Adds facility to mark as questionnaire as 'must complete'

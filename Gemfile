@@ -20,9 +20,15 @@ gemspec
 
 # I can't get activeadmin and jquery (which it needs) to work in
 # the test/dummy environment without these gem declarations.
-gem 'jquery-rails'
+
 gem 'activeadmin'
-gem 'coffee-script'
+gem 'bourbon', '~> 3.2.3'
+group :assets do
+  gem 'coffee-script'
+  gem 'jquery-rails'
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'therubyracer', '0.10.2', :platforms => :ruby
+end
 
 # Force development mode to use compatible versions of rails and active admin
 # These settings should not get into the gem. When in use compatibility between
