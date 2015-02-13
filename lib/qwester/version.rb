@@ -1,9 +1,11 @@
 module Qwester
-  VERSION = "0.3.4"
+  VERSION = "0.3.5"
 end
 
 # History
 # =======
+# 0.3.5 - Fixes typo in README (yes ... the same one!)
+#
 # 0.3.4 - Fixes typo in test/dummy/config/routes.rb
 #
 # 0.3.3 - Applies labels to checkbox and radio button texts within standard
