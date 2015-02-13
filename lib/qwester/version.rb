@@ -1,10 +1,13 @@
 module Qwester
-  VERSION = "0.3.3"
+  VERSION = "0.3.4"
 end
 
 # History
 # =======
-# 0.3.3 - Fixes typo in test/dummy/config/routes.rb
+# 0.3.4 - Fixes typo in test/dummy/config/routes.rb
+#
+# 0.3.3 - Applies labels to checkbox and radio button texts within standard
+#   questionnaire forms.
 #
 # 0.3.2 - Fixes issues where rule_set rule references answers that do not exist.
 #

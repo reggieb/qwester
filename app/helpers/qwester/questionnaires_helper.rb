@@ -5,11 +5,19 @@ module Qwester
       answers = question.answers
       buttons = answers.collect do |answer|
         if question.multi_answer?
-          button = check_box_tag(button_name, answer.id, answer_checked(answer))
+          check_box_id = "question_id[#{question.id}][answer_ids][#{answer.id}]"
+          button = check_box_tag(
+                     check_box_id, 
+                     answer.id, 
+                     answer_checked(answer), 
+                     name: button_name
+                   )
         else
           button = radio_button_tag(button_name, answer.id, answer_checked(answer))
         end
-        content_tag('li', "#{button}#{answer.value}".html_safe)
+        id = button.match(/id=\"(\w+)\"/)[1]
+        text = label_tag(id, answer.value)
+        content_tag('li', "#{button}#{text}".html_safe)
       end
       content_tag('ul', buttons.join.html_safe, :class => list_class)
     end
