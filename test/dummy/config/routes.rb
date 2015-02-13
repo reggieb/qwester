@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     devise_for :admin_users, ActiveAdmin::Devise.config
   end
 
-  mount Qwester::Engine => "/questionnires"
+  mount Qwester::Engine => "/questionnaires"
   
 
 end
