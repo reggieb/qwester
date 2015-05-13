@@ -219,6 +219,20 @@ However, look at the notes in Gemfile. You may need to uncomment two gem
 declarations in the gemfile, before jquery and active_admin work correctly in
 the test/dummy environment.
 
+== Testing
+
+Note that the test datebase is not updated when running the root tests.
+
+To create the test database run the following at test/dummy
+
+  rake db:schema:load RAILS_ENV=test
+
+To keep the test database in step with new migrations, at test/dummy run
+
+  rake db:migrate RAILS_ENV=test
+
+To run all the tests, run rake test at the engine root.
+
 == Integration with ActiveAdmin
 
 Qwester contains a set of ActiveAdmin register files, that allow Qwester
