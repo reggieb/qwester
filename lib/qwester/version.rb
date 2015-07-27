@@ -1,9 +1,11 @@
 module Qwester
-  VERSION = "0.3.5"
+  VERSION = "0.4.0"
 end
 
 # History
 # =======
+# 0.4.0 - Updates version of paperclip used to avoid recent vulnerability
+#
 # 0.3.5 - Fixes typo in README (yes ... the same one!)
 #
 # 0.3.4 - Fixes typo in test/dummy/config/routes.rb

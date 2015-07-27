@@ -47,6 +47,7 @@ module Qwester
     )
 
     validates :title, :presence => true
+    validates_attachment_content_type :button_image, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
     private
     def method_missing(symbol, *args, &block)
