@@ -3,13 +3,6 @@
 <% @questionnaires.each do |questionnaire| %>
   <div class="questionnaire">
     <%= link_to(
-          image_tag(questionnaire.button_image.url(:link)),
-          questionnaire_path(questionnaire),
-          :class => 'image_link'
-        )
-    %>
-    <br>
-    <%= link_to(
           questionnaire.title,
           questionnaire_path(questionnaire),
           :class => 'text_link'
@@ -31,9 +24,9 @@
 </ul>
 <% end %>
 
-<%= 
+<%=
   content_tag(
-    'p', 
+    'p',
     link_to('Clear answers and start again', reset_questionnaires_path)
   ) if @qwester_answer_store and @qwester_answer_store.answers.present?
 %>

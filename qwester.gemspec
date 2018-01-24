@@ -16,17 +16,18 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", ">= 3.2"
-  s.add_dependency "paperclip", "~> 4.0"   # Adds attachment functions
-  s.add_dependency "array_logic", "~> 0.2.4" # logic engine used in rule sets
+  s.add_dependency "rails", '~> 3.2'
+  s.add_dependency "array_logic" # logic engine used in rule sets
   s.add_dependency 'acts_as_list'
-  
+
   s.add_development_dependency "dibber"  # Used for seeding in test/dummy
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'activeadmin'
-  s.add_development_dependency 'sass-rails',   '~> 3.2.3'
-  s.add_development_dependency 'uglifier', '>= 1.0.3'
+  s.add_development_dependency 'sass-rails'
+  s.add_development_dependency 'uglifier'
   s.add_development_dependency 'jquery-ui-rails'
   s.add_development_dependency 'jquery-rails'
   s.add_development_dependency 'inherited_resources'
+  s.add_development_dependency 'devise'
+  s.add_development_dependency 'test-unit'
 end

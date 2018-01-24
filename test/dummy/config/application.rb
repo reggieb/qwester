@@ -1,4 +1,6 @@
 require File.expand_path('../boot', __FILE__)
+require "inherited_resources"
+require 'devise'
 
 require 'rails/all'
 

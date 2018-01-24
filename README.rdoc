@@ -55,23 +55,23 @@ question has a unique set of answers that can be modified as required.
 
 The helper method qwester_answers_selection_list will output a set of form
 elements matching the answers for the given question, as an unordered list.
-The form elements will be radio buttons unless the question is marked as 
+The form elements will be radio buttons unless the question is marked as
 'multi-answer', in which case check boxes will be used.
 
     <%= qwester_answers_selection_list(question) %>
 
 The controller method update_qwester_answer_store can be used to manage the
-data submitted from these form elements. It will add the answers to the 
+data submitted from these form elements. It will add the answers to the
 current answer store.
 
 === Answer store
 
-Submitted answers are stored in an AnswerStore object. On creation, each 
+Submitted answers are stored in an AnswerStore object. On creation, each
 answer_store is assigned a session_id that can then be used within session,
-to identify the current user's answer_store. In this way, questionnaire 
+to identify the current user's answer_store. In this way, questionnaire
 submissions can be tracked across multiple submissions.
 
-By default the current answer_store.session_id is stored in 
+By default the current answer_store.session_id is stored in
 session[:qwester_answer_store]. If you wish to use a different session key,
 set Qwester.session_key in the qwester initializer:
 
@@ -81,12 +81,12 @@ set Qwester.session_key in the qwester initializer:
 
 To preserve an answer store, call its preserve method:
 
-    preserved_answer_store = answer_store.preserve 
+    preserved_answer_store = answer_store.preserve
 
 This will create a copy of the original answer_store. This copy will have its
-own unique session_id. This session_id can then be used restore the answer_store 
+own unique session_id. This session_id can then be used restore the answer_store
 at a later date. The answer_store#preserved field stores the datetime
-when it was preserved. 
+when it was preserved.
 
     preserved_answer_store.preserved? == true
     preserved_answer_store.preserved  --> datetime of preservation
@@ -131,14 +131,14 @@ which will return an array of rule sets that match those answers.
 Each rule set has an url associated with it, and this url should lead a user
 to a resource either within or outside the app.
 
-RuleSet uses array_logic[http://github.com/reggieb/array_logic] to manage 
+RuleSet uses array_logic[http://github.com/reggieb/array_logic] to manage
 the logic used to compare each rule set with the array of answers.
 
 == Presentation
 
 Questionnaires can be grouped into Presentations, and these are used to
 control which questionnaires are displayed (presented to the user) at
-any time. 
+any time.
 
 All questionnaires are display at the engine root unless:
 
@@ -155,7 +155,7 @@ wish to display.
 === Using a questionnaire to control access to other questionnaires
 
 Say you have three presentations of questionnaires, and you want to display
-one initially. Then you want to use the answers submitted from that 
+one initially. Then you want to use the answers submitted from that
 questionnaire, to control which of the other two sets of questionnaires are
 displayed next.
 
@@ -166,7 +166,7 @@ pattern to be displayed, and set rule_set#presentation to the name of
 the presentation you wish displayed when the rule is matched.
 
 Then when the first set of questionnaires are submitted, the rules will be
-checked, and if one of the two rules sets matches the submitted answers, 
+checked, and if one of the two rules sets matches the submitted answers,
 the associated presentation's questionnaires will be displayed.
 
 === Simple rule matching for presentations
@@ -186,7 +186,7 @@ as a new presentation e.g. 'three', and then go from one to two to three.
 
 == Answer weighting
 
-Answers have a weighting field (float) to give selected answers more weight 
+Answers have a weighting field (float) to give selected answers more weight
 when comparing answers. You can also define an alias for this field, to give
 it a name that is more appropriate to your application.
 
@@ -196,7 +196,7 @@ the weighting alias. In an initializer add this:
 
   Qwester::Answer.weighting_alias = :score
 
-This will add a 'score' instance method to Answers, that will return the 
+This will add a 'score' instance method to Answers, that will return the
 weighting for that answer.
 
 Then apply a score/weighting to each correct answer in the database.
@@ -240,7 +240,7 @@ models to be managed from within the parent app's active_admin space. Of course
 ActiveAdmin needs to be installed and working in the parent rails application,
 for this to work.
 
-To use the Qwester ActiveAdmin register files, add this to the active_admin 
+To use the Qwester ActiveAdmin register files, add this to the active_admin
 initializer in your application.
 
     config.load_paths << Qwester.active_admin_load_path
@@ -259,12 +259,12 @@ an over-riding register file while the app is running, the load order is altered
 and the qwester register file over-rides the local app's register file until the
 app is restarted. Therefore, you have to restart the app before modifications
 to over-riding register files take effect. In practice this only affects the
-development environment, as in both test and production the app is restarted 
+development environment, as in both test and production the app is restarted
 after a change.
 
 === Active admin menus
 Links to the admin pages for Qwester models will appear in a 'Qwester' sub-menu.
-If you wish to change the name of the menu parent group, add this to an 
+If you wish to change the name of the menu parent group, add this to an
 initializer:
 
     Qwester.active_admin_menu = 'menu name'

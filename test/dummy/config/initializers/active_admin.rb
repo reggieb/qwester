@@ -143,9 +143,9 @@ ActiveAdmin.setup do |config|
   #   config.register_javascript 'my_javascript.js'
   # Load application.js to remove jQuery conflicts (so jquery is only loaded in application.js):
   current_javascripts = config.javascripts.clone
-  config.clear_javascripts! 
+  config.clear_javascripts!
   config.register_javascript 'application.js'
-  current_javascripts.reverse.each{|j| config.register_javascript j}
+  current_javascripts.reverse_each{|j| config.register_javascript j}
 
   # == CSV options
   #
@@ -154,7 +154,7 @@ ActiveAdmin.setup do |config|
   #
   # Set the CSV builder options (default is {})
   # config.csv_options = {}
-  
+
   config.load_paths << Qwester.active_admin_load_path
-  
-end 
+
+end

@@ -7,10 +7,6 @@
 // For example, to change the sidebar width:
 // $sidebar-width: 242px;
 
-// Active Admin's got SASS!
-@import "active_admin/mixins";
-@import "active_admin/base";
-
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
@@ -20,7 +16,7 @@
 //
 // Notice that Active Admin CSS rules are nested within a
 // 'body.active_admin' selector to prevent conflicts with
-// other pages in the app. It is best to wrap your changes in a 
+// other pages in the app. It is best to wrap your changes in a
 // namespace so they are properly recognized. You have options
 // if you e.g. want different styles for different namespaces:
 //
@@ -32,7 +28,7 @@ body.active_admin {
 
   a.no_decoration {
     text-decoration: none;
-    color: $text-color;
+    color: #323537;
   }
 
   form {
@@ -40,7 +36,7 @@ body.active_admin {
     table.selection {
       width: inherit;
       tr:nth-child(odd) {
-        background-color: $table-selected-color;
+        background-color: #d9e4ec;
       }
 
       .options input {
@@ -57,32 +53,32 @@ body.active_admin {
     width: inherit;
     margin-left: 20px;
   }
-  
+
   ul.matching_answers {
     border: black 1px solid;
     padding: 10px;
-    
+
     li {
       list-style: none;
     }
   }
-  
+
   .rule_example {
     margin: 10px 20px 30px;
   }
-  
+
   div.warn {
     border: red solid 2px;
     padding: 0;
     margin: 10px;
-    
+
     h3 {
       background-color: red;
       margin: 0;
       padding: 5px 10px;
       color: white;
     }
-    
+
     p {
       padding: 5px 10px;
       font-size: 1.2em;

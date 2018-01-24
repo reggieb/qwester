@@ -22,7 +22,7 @@ gemspec
 # the test/dummy environment without these gem declarations.
 
 gem 'activeadmin'
-gem 'bourbon', '~> 3.2.3'
+gem 'bourbon'
 group :assets do
   gem 'coffee-script'
   gem 'jquery-rails'
@@ -30,8 +30,3 @@ group :assets do
   gem 'therubyracer', '0.10.2', :platforms => :ruby
 end
 
-# Force development mode to use compatible versions of rails and active admin
-# These settings should not get into the gem. When in use compatibility between
-# rails and active admin should be managed from within the host app.
-gem 'rails', '3.2.14'
-gem 'activeadmin', '0.5.1'
